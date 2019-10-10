@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/botspot"
+        android:title="@string/spot_the_bot" />
+    <item
+        android:id="@+id/black_white"
+        android:title="@string/b_and_w" />
+    <item
+        android:id="@+id/hsv"
+        android:title="@string/hsv" />
+    <item
+        android:id="@+id/lab"
+        android:title="@string/lab" />
+</menu>

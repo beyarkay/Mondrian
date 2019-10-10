@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextureView
+        android:id="@+id/textureView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivBitmap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:contentDescription="@string/image_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/ll1and2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_transparent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/tvSlider1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/default_slider_1" />
+
+                <SeekBar
+                    android:id="@+id/sbSlider1"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@string/max_slider_1"
+                    android:progress="@string/default_slider_1" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/tvSlider2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/default_slider_2" />
+
+                <SeekBar
+                    android:id="@+id/sbSlider2"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@string/max_slider_2"
+                    android:progress="@string/default_slider_2" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll3and4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_transparent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/tvSlider3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/default_slider_3" />
+
+                <SeekBar
+                    android:id="@+id/sbSlider3"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@string/max_slider_3"
+                    android:progress="@string/default_slider_3" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/tvSlider4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/default_slider_4" />
+
+                <SeekBar
+                    android:id="@+id/sbSlider4"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@string/max_slider_4"
+                    android:progress="@string/default_slider_4" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llVal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_transparent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/tvSlider5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/default_slider_5" />
+
+                <SeekBar
+                    android:id="@+id/sbSlider5"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@string/max_slider_5"
+                    android:progress="@string/default_slider_5" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/tvSlider6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/default_slider_6" />
+
+                <SeekBar
+                    android:id="@+id/sbSlider6"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@string/max_slider_6"
+                    android:progress="@string/default_slider_6" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <Button
+            android:id="@+id/btnReject"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:text="@string/reject"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnCapture"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.9"
+            android:text="@string/capture"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnAccept"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:text="@string/accept"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

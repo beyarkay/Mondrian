@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">OpenCVDeus</string>
+    <string name="image_view">Image view</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="capture">Capture</string>
+    <string name="hsv">HSV</string>
+    <string name="lab">LAB</string>
+    <string name="b_and_w">B And W</string>
+    <string name="spot_the_bot">Spot The Bot</string>
+    <string name="value">Value</string>
+
+    <!--Threshold-->
+    <string name="default_slider_1">140</string>
+    <string name="max_slider_1">255</string>
+
+    <!--size in mm-->
+    <string name="default_slider_2">50</string>
+    <string name="max_slider_2">100</string>
+
+    <!--Canny threshold 1-->
+    <string name="default_slider_3">80</string>
+    <string name="max_slider_3">255</string>
+
+    <!--Canny threshold 2-->
+    <string name="default_slider_4">190</string>
+    <string name="max_slider_4">255</string>
+
+    <string name="default_slider_5">30</string>
+    <string name="max_slider_5">100</string>
+
+    <string name="default_slider_6">30</string>
+    <string name="max_slider_6">100</string>
+
+</resources>

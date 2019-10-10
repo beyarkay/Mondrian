@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.ejml:ejml-dsparse:0.36@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ejml/ejml-dsparse/0.36/7276782db624403572248042bf5250d67df1d5ac/ejml-dsparse-0.36.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ejml/ejml-dsparse/0.36/608fd6f96eb7a7517a9aa22f42f4a2124e623751/ejml-dsparse-0.36-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

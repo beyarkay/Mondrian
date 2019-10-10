@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.0"
+    defaultConfig {
+        applicationId "com.beyarkay.opencvdeus"
+        minSdkVersion 28
+        targetSdkVersion 28
+        versionCode 1
+//        multiDexEnabled true
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Boof CV
+//    api group: 'org.boofcv', name: 'boofcv-android', version: '0.34'
+
+    // OpenCV
+    implementation 'com.quickbirdstudios:opencv:3.4.1'
+    implementation 'com.quickbirdstudios:opencv:3.4.4-contrib'
+
+    // Implementation for Floating Action Buttons
+    implementation 'com.google.android.material:material:1.1.0-alpha10'
+
+    // ZXing (for QR Code Recognition)
+    implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
+    implementation 'com.google.zxing:core:3.2.0'
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    def cameraxVersion = "1.0.0-alpha05"
+    implementation "androidx.camera:camera-core:${cameraxVersion}"
+    implementation "androidx.camera:camera-camera2:${cameraxVersion}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+
+// Added because BoofCV said so
+configurations {
+    all*.exclude group: "xmlpull", module: "xmlpull"
+    all*.exclude group: "org.apache.commons", module: "commons-compress"
+    all*.exclude group: "com.thoughtworks.xstream", module: "commons-compress"
+}

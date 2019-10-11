@@ -39,7 +39,7 @@ void handleLed() {
 void handleSerial() {
   String data = server.arg("data"); //http ://<ip address>/serial?data=thisissomedata
   Serial.println(data);
-  server.send(200, "text/html", makeHtmlForm("Data sent"));
+  server.send(200, "text/html", makeHtmlForm("Data sent: " + data));
 
   
 }

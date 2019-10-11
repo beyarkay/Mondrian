@@ -18,8 +18,6 @@ void loop() {
   } else if (command == 'l' && setupComplete) {
     digitalWrite(LED_BUILTIN, LOW);
   }
-
-
 }
 
 

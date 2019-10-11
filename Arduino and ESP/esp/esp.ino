@@ -1,13 +1,17 @@
+#define PIN_DEBUG 2
+
+
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
   Serial.println("s");
+  pinMode(PIN_DEBUG, OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   Serial.println("h");
+  digitalWrite(PIN_DEBUG, HIGH);
   delay(1000);
   Serial.println("l");
-  delay(500);
+  digitalWrite(PIN_DEBUG, LOW);
+  delay(2000);
 }

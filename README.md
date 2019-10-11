@@ -28,7 +28,11 @@ Features: WiFi
 ```
 * After this, push and release the RESET button, and all should 
 be good
-* 
+* Possible Errors: 
+    * TODO: Add errors
+
+* For the NANO, upload nano.ino, but make sure 
+'ATMega 382P (Old Bootloader)' is selected
 
 
 

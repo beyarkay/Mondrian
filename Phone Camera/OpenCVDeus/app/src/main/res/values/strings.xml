@@ -31,5 +31,10 @@
 
     <string name="default_slider_6">30</string>
     <string name="max_slider_6">100</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="forwards">Forwards</string>
+    <string name="backwards">Backwards</string>
+    <string name="connect">Connect</string>
 
 </resources>

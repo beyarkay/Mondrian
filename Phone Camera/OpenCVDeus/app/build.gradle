@@ -31,7 +31,10 @@ dependencies {
     implementation 'com.quickbirdstudios:opencv:3.4.4-contrib'
 
     // Implementation for Floating Action Buttons
-    implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'com.google.android.material:material:1.1.0-beta01'
+
+    implementation 'com.android.volley:volley:1.1.1'
+
 
     // ZXing (for QR Code Recognition)
     implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'

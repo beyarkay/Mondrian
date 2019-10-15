@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -14,6 +16,7 @@ import android.util.Rational;
 import android.util.Size;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
@@ -38,6 +41,13 @@ import androidx.camera.core.PreviewConfig;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.aruco.Aruco;
@@ -58,7 +68,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
 
 
     private static final String TAG = "(╯°□°)╯︵ ┻━┻";
@@ -93,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageAnalysis imageAnalysis;
     Preview preview;
 
-    Button btnCapture, btnOk, btnCancel;
+    //    Button btnCapture, btnOk, btnCancel;
+    Button btnLeft, btnRight, btnForewards, btnBackwards, btnConnect;
     int slider1;      // Threshold
     int slider2;      // size in mm
     int slider3;      // Canny thresh 1
@@ -126,12 +137,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-        btnCapture = findViewById(R.id.btnCapture);
-        btnOk = findViewById(R.id.btnAccept);
-        btnCancel = findViewById(R.id.btnReject);
+//        btnCapture = findViewById(R.id.btnCapture);
+//        btnOk = findViewById(R.id.btnAccept);
+//        btnCancel = findViewById(R.id.btnReject);
+        btnBackwards = findViewById(R.id.btnBackwards);
+        btnForewards = findViewById(R.id.btnForewards);
+        btnLeft = findViewById(R.id.btnLeft);
+        btnRight = findViewById(R.id.btnRight);
+        btnConnect = findViewById(R.id.btnConnect);
+        btnBackwards.setOnTouchListener(this);
+        btnForewards.setOnTouchListener(this);
+        btnLeft.setOnTouchListener(this);
+        btnRight.setOnTouchListener(this);
+        btnConnect.setOnTouchListener(this);
 
-        btnOk.setOnClickListener(this);
-        btnCancel.setOnClickListener(this);
+//        btnOk.setOnClickListener(this);
+//        btnCancel.setOnClickListener(this);
 
         llBottom = findViewById(R.id.llBottom);
         textureView = findViewById(R.id.textureView);
@@ -379,8 +400,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         );
 
 
-                        System.out.println("rvec = " + rvec.dump());
-                        System.out.println("tvec = " + tvec.dump());
                         for (int i = 0; i < rvec.height(); i++) {
                             Calib3d.drawFrameAxes(
                                     matrices[0],
@@ -551,7 +570,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         (int) (moments.get(i).m10 / moments.get(i).m00),
                         (int) (moments.get(i).m01 / moments.get(i).m00)));
             }
-//            Imgproc.circle(matrices[0], centres.get(i), 5, COLOURS[(int) (Math.random() * COLOURS.length - 1)]);
         }
 
 
@@ -725,24 +743,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void showAcceptedRejectedButton(boolean acceptedRejected) {
-        if (acceptedRejected) {
-            CameraX.unbind(preview, imageAnalysis);
-            llBottom.setVisibility(View.VISIBLE);
-            btnCapture.setVisibility(View.INVISIBLE);
-            textureView.setVisibility(View.GONE);
-        } else {
-            btnCapture.setVisibility(View.VISIBLE);
-            llBottom.setVisibility(View.GONE);
-            textureView.setVisibility(View.VISIBLE);
-            textureView.post(new Runnable() {
-                @Override
-                public void run() {
-                    startCamera();
-                }
-            });
-        }
-    }
+//    private void showAcceptedRejectedButton(boolean acceptedRejected) {
+//        if (acceptedRejected) {
+//            CameraX.unbind(preview, imageAnalysis);
+//            llBottom.setVisibility(View.VISIBLE);
+//            btnCapture.setVisibility(View.INVISIBLE);
+//            textureView.setVisibility(View.GONE);
+//        } else {
+//            btnCapture.setVisibility(View.VISIBLE);
+//            llBottom.setVisibility(View.GONE);
+//            textureView.setVisibility(View.VISIBLE);
+//            textureView.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    startCamera();
+//                }
+//            });
+//        }
+//    }
 
     private void updateTransform() {
 
@@ -862,14 +880,66 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d(TAG, ((Button) v).getText().toString() + " PUSHED");
+                if (((Button) v).getText().equals(getResources().getString(R.string.connect))){
+                    connectToWifi("riversong", "melodypond");
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.d(TAG, ((Button) v).getText().toString() + " RELEASED");
+                break;
+        }
+        return true;
+    }
+
+    public boolean connectToWifi(String ssid, String key) {
+        WifiConfiguration wifiConfig = new WifiConfiguration();
+        wifiConfig.SSID = String.format("\"%s\"", ssid);
+        wifiConfig.preSharedKey = String.format("\"%s\"", key);
+
+        WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+        //remember id
+        int netId = wifiManager.addNetwork(wifiConfig);
+        wifiManager.disconnect();
+        wifiManager.enableNetwork(netId, true);
+        wifiManager.reconnect();
+        return true;
+    }
+
+    private void sendGETRequest() {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://www.google.com";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Log.d(TAG, "Response is: " + response.substring(0, 500));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "That didn't work!: " + error.toString());
+            }
+        });
+
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 }
 

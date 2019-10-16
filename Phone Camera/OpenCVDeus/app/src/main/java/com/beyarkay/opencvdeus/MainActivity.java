@@ -2,6 +2,7 @@
 package com.beyarkay.opencvdeus;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -882,46 +883,89 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
-
-    @Override
     public boolean onTouch(View v, MotionEvent event) {
-
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 Log.d(TAG, ((Button) v).getText().toString() + " PUSHED");
-                if (((Button) v).getText().equals(getResources().getString(R.string.connect))){
-                    connectToWifi("riversong", "melodypond");
+
+                switch (v.getId()) {
+                    case R.id.btnConnect:
+                        if (connectToNetworkWPA("riversong", "melodypond")) {
+                            v.setEnabled(false);
+                            ((Button) v).setText(getString(R.string.connected));
+                        } else {
+                            v.setEnabled(true);
+                            ((Button) v).setText(getString(R.string.connect));
+                        }
+                        break;
+                    case R.id.btnForewards:
+                        sendHttpSerial("h");
+                        break;
+                    case R.id.btnBackwards:
+                        sendHttpSerial("l");
+
+                        break;
+                    case R.id.btnLeft:
+                        sendHttpSerial("s");
+                        break;
+                    case R.id.btnRight:
+
+                        break;
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                Log.d(TAG, ((Button) v).getText().toString() + " RELEASED");
                 break;
         }
         return true;
     }
 
-    public boolean connectToWifi(String ssid, String key) {
-        WifiConfiguration wifiConfig = new WifiConfiguration();
-        wifiConfig.SSID = String.format("\"%s\"", ssid);
-        wifiConfig.preSharedKey = String.format("\"%s\"", key);
 
-        WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-        //remember id
-        int netId = wifiManager.addNetwork(wifiConfig);
-        wifiManager.disconnect();
-        wifiManager.enableNetwork(netId, true);
-        wifiManager.reconnect();
-        return true;
+    public boolean connectToNetworkWPA(String networkSSID, String password) {
+        try {
+            WifiConfiguration conf = new WifiConfiguration();
+            conf.SSID = "\"" + networkSSID + "\"";
+
+            conf.preSharedKey = "\"" + password + "\"";
+
+            conf.status = WifiConfiguration.Status.ENABLED;
+            conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+            conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+            conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+            conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+            conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+
+            Log.d("connecting", conf.SSID + " " + conf.preSharedKey);
+
+            WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            wifiManager.addNetwork(conf);
+
+            Log.d("after connecting", conf.SSID + " " + conf.preSharedKey);
+
+
+            List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+            for (WifiConfiguration i : list) {
+                if (i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
+                    wifiManager.disconnect();
+                    wifiManager.enableNetwork(i.networkId, true);
+                    wifiManager.reconnect();
+                    Log.d("re connecting", i.SSID + " " + conf.preSharedKey);
+                    break;
+                }
+            }
+
+            //WiFi Connection success, return true
+            return true;
+        } catch (Exception ex) {
+            System.out.println(Arrays.toString(ex.getStackTrace()));
+            return false;
+        }
     }
 
-    private void sendGETRequest() {
+    private void sendHttpSerial(String data) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://www.google.com";
+        String url = "http://192.168.4.1/serial?data=" + data;
+        Log.d(TAG, "sendHttpSerial: " + url);
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -934,7 +978,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d(TAG, "That didn't work!: " + error.toString());
+                Log.d(TAG, "That didn't work!: ");
+                error.printStackTrace();
             }
         });
 

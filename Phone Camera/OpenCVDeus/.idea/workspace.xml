@@ -72,45 +72,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa4d554a-6b04-4e97-adae-749457673106" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_beta04_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_beta04_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_beta01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/ic_launcher-web.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../LICENSE.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -144,93 +116,28 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="904" column="5" lean-forward="true" selection-start-line="904" selection-start-column="5" selection-end-line="904" selection-end-column="5" />
+            <state relative-caret-position="602">
+              <caret line="981" column="40" selection-start-line="981" selection-start-column="40" selection-end-line="981" selection-end-column="40" />
               <folding>
                 <element signature="initializer##0;class#MainActivity#0" />
-                <element signature="class#5100:5536" />
-                <element signature="method#onProgressChanged#0;class#5100:5536" />
-                <element signature="method#onStartTrackingTouch#0;class#5100:5536" />
-                <element signature="method#onStopTrackingTouch#0;class#5100:5536" />
-                <element signature="e#7192#7230#1" />
-                <element signature="e#7236#7348#1" />
-                <element signature="e#7360#8391#0" />
-                <element signature="e#7432#8385#0" />
-                <element signature="e#8397#8686#0" />
-                <element signature="e#8692#9816#0" />
-                <element signature="e#9822#11920#0" />
-                <element signature="e#10175#10243#0" />
-                <element signature="e#11926#15220#0" />
-                <element signature="e#14394#14791#1" />
-                <element signature="e#15226#15878#0" />
-                <element signature="e#15258#15297#0" />
-                <element signature="e#15727#15843#1" />
-                <element signature="e#15885#17624#0" />
-                <element signature="e#16259#16296#1" />
-                <element signature="e#17137#17264#1" />
-                <element signature="e#17630#19281#0" />
-                <element signature="e#18375#19124#1" />
-                <element signature="e#18481#19032#1" />
-                <element signature="e#18721#19018#1" />
-                <element signature="e#18883#19000#1" />
-                <element signature="e#19076#19114#1" />
-                <element signature="e#19287#20559#0" />
-                <element signature="e#19963#20504#1" />
-                <element signature="e#20110#20171#1" />
-                <element signature="e#20177#20379#1" />
-                <element signature="e#20566#22664#0" />
-                <element signature="e#20663#20702#1" />
-                <element signature="e#21138#21217#1" />
-                <element signature="e#21247#21326#1" />
-                <element signature="e#21356#21435#1" />
-                <element signature="e#21441#21540#1" />
-                <element signature="e#22053#22116#1" />
-                <element signature="e#22122#22185#1" />
-                <element signature="e#22670#23184#0" />
-                <element signature="e#22764#23178#1" />
-                <element signature="e#22819#23168#1" />
-                <element signature="e#23190#24071#0" />
-                <element signature="e#23369#24065#1" />
-                <element signature="e#23526#23860#1" />
-                <element signature="e#24077#25919#0" />
-                <element signature="e#25691#25913#1" />
-                <element signature="e#25926#26066#0" />
-                <element signature="e#26072#27240#0" />
-                <element signature="e#26229#26410#1" />
-                <element signature="e#26447#27177#0" />
-                <element signature="e#26485#26529#1" />
-                <element signature="e#26883#26947#0" />
-                <element signature="e#27198#27234#0" />
-                <element signature="e#27362#27435#0" />
-                <element signature="e#27919#28788#0" />
-                <element signature="e#28253#28691#0" />
-                <element signature="e#28794#29082#0" />
-                <element signature="e#28892#29055#1" />
-                <element signature="e#29000#29045#1" />
-                <element signature="e#29088#29235#0" />
-                <element signature="e#29241#30008#0" />
-                <element signature="e#29344#29951#0" />
-                <element signature="e#30010#30025#0" />
-                <element signature="e#31141#31584#0" />
-                <element signature="e#31327#31578#1" />
-                <element signature="e#31370#31416#1" />
-                <element signature="e#31422#31568#1" />
-                <element signature="e#31646#31724#0" />
-                <element signature="e#32653#32695#0" expanded="true" />
-                <element signature="e#33844#34175#0" expanded="true" />
-                <element signature="e#34174#34175#0" expanded="true" />
-                <element signature="e#34177#34384#0" expanded="true" />
-                <element signature="e#34383#34384#0" expanded="true" />
+                <element signature="e#32824#32853#0" expanded="true" />
+                <element signature="e#32986#33013#0" expanded="true" />
+                <element signature="e#33097#34867#0" />
+                <element signature="e#36136#36341#0" expanded="true" />
+                <element signature="e#36340#36341#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/net/wifi/WifiManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+            <state relative-caret-position="494">
+              <caret line="377" column="7" selection-start-line="377" selection-start-column="7" selection-end-line="377" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -238,8 +145,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="285">
+              <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
             </state>
           </provider>
           <provider editor-type-id="android-manifest" />
@@ -247,29 +154,18 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="59" column="62" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
-              <folding>
-                <element signature="e#293#684#0" />
-                <element signature="e#690#1135#0" />
-                <element signature="e#2075#2092#0" expanded="true" />
-                <element signature="e#2807#2821#0" expanded="true" />
-                <element signature="e#2005#2020#0" expanded="true" />
-                <element signature="e#2259#2277#0" expanded="true" />
-                <element signature="e#2637#2656#0" expanded="true" />
-                <element signature="e#3443#3469#0" expanded="true" />
-                <element signature="e#7679#9190#0" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
+            <state relative-caret-position="555">
               <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
             </state>
           </provider>
@@ -312,6 +208,7 @@
       <find>TAG</find>
       <find>System.out.print</find>
       <find>Log.d</find>
+      <find>WIFI_STATE_DISABL</find>
     </findStrings>
     <replaceStrings>
       <replace>max</replace>
@@ -341,7 +238,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -354,17 +251,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+      <pane id="AndroidView">
+        <subPane>
           <expand>
             <path>
-              <item name="OpenCVDeus" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="OpenCVDeus" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -376,22 +274,17 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
-              <item name="OpenCVDeus" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="OpenCVDeus" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+              <item name="OpenCVDeus" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -556,21 +449,21 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.72746783" weight="0.2626506" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.81044346" visible="true" weight="0.23734939" />
+      <window_info anchor="bottom" x="0" y="45" width="1440" height="855" id="Logcat" maximized="true" order="1" sideWeight="0.81044346" type="WINDOWED" weight="0.44457832" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.7253219" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.22048193" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.18955651" side_tool="true" weight="0.4807229" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32866243" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.5243205" weight="0.3325301" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.4698795" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.5243205" weight="0.31686747" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.5228916" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32891566" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" sideWeight="0.5888" weight="0.3297568" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Preview" order="4" sideWeight="0.655496" weight="0.3297568" />
-      <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="5" sideWeight="0.4112" side_tool="true" weight="0.25751072" />
+      <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="5" sideWeight="0.4112" side_tool="true" visible="true" weight="0.16309012" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
     </layout>
     <layout-to-restore>
@@ -631,7 +524,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java</url>
-          <line>741</line>
+          <line>742</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
@@ -864,124 +757,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="495">
           <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
+        <state relative-caret-position="555">
           <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="59" column="62" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
-          <folding>
-            <element signature="e#293#684#0" />
-            <element signature="e#690#1135#0" />
-            <element signature="e#2075#2092#0" expanded="true" />
-            <element signature="e#2807#2821#0" expanded="true" />
-            <element signature="e#2005#2020#0" expanded="true" />
-            <element signature="e#2259#2277#0" expanded="true" />
-            <element signature="e#2637#2656#0" expanded="true" />
-            <element signature="e#3443#3469#0" expanded="true" />
-            <element signature="e#7679#9190#0" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="285">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
         </state>
       </provider>
       <provider editor-type-id="android-manifest" />
     </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/net/wifi/WifiManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="377" column="7" selection-start-line="377" selection-start-column="7" selection-end-line="377" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="904" column="5" lean-forward="true" selection-start-line="904" selection-start-column="5" selection-end-line="904" selection-end-column="5" />
+        <state relative-caret-position="602">
+          <caret line="981" column="40" selection-start-line="981" selection-start-column="40" selection-end-line="981" selection-end-column="40" />
           <folding>
             <element signature="initializer##0;class#MainActivity#0" />
-            <element signature="class#5100:5536" />
-            <element signature="method#onProgressChanged#0;class#5100:5536" />
-            <element signature="method#onStartTrackingTouch#0;class#5100:5536" />
-            <element signature="method#onStopTrackingTouch#0;class#5100:5536" />
-            <element signature="e#7192#7230#1" />
-            <element signature="e#7236#7348#1" />
-            <element signature="e#7360#8391#0" />
-            <element signature="e#7432#8385#0" />
-            <element signature="e#8397#8686#0" />
-            <element signature="e#8692#9816#0" />
-            <element signature="e#9822#11920#0" />
-            <element signature="e#10175#10243#0" />
-            <element signature="e#11926#15220#0" />
-            <element signature="e#14394#14791#1" />
-            <element signature="e#15226#15878#0" />
-            <element signature="e#15258#15297#0" />
-            <element signature="e#15727#15843#1" />
-            <element signature="e#15885#17624#0" />
-            <element signature="e#16259#16296#1" />
-            <element signature="e#17137#17264#1" />
-            <element signature="e#17630#19281#0" />
-            <element signature="e#18375#19124#1" />
-            <element signature="e#18481#19032#1" />
-            <element signature="e#18721#19018#1" />
-            <element signature="e#18883#19000#1" />
-            <element signature="e#19076#19114#1" />
-            <element signature="e#19287#20559#0" />
-            <element signature="e#19963#20504#1" />
-            <element signature="e#20110#20171#1" />
-            <element signature="e#20177#20379#1" />
-            <element signature="e#20566#22664#0" />
-            <element signature="e#20663#20702#1" />
-            <element signature="e#21138#21217#1" />
-            <element signature="e#21247#21326#1" />
-            <element signature="e#21356#21435#1" />
-            <element signature="e#21441#21540#1" />
-            <element signature="e#22053#22116#1" />
-            <element signature="e#22122#22185#1" />
-            <element signature="e#22670#23184#0" />
-            <element signature="e#22764#23178#1" />
-            <element signature="e#22819#23168#1" />
-            <element signature="e#23190#24071#0" />
-            <element signature="e#23369#24065#1" />
-            <element signature="e#23526#23860#1" />
-            <element signature="e#24077#25919#0" />
-            <element signature="e#25691#25913#1" />
-            <element signature="e#25926#26066#0" />
-            <element signature="e#26072#27240#0" />
-            <element signature="e#26229#26410#1" />
-            <element signature="e#26447#27177#0" />
-            <element signature="e#26485#26529#1" />
-            <element signature="e#26883#26947#0" />
-            <element signature="e#27198#27234#0" />
-            <element signature="e#27362#27435#0" />
-            <element signature="e#27919#28788#0" />
-            <element signature="e#28253#28691#0" />
-            <element signature="e#28794#29082#0" />
-            <element signature="e#28892#29055#1" />
-            <element signature="e#29000#29045#1" />
-            <element signature="e#29088#29235#0" />
-            <element signature="e#29241#30008#0" />
-            <element signature="e#29344#29951#0" />
-            <element signature="e#30010#30025#0" />
-            <element signature="e#31141#31584#0" />
-            <element signature="e#31327#31578#1" />
-            <element signature="e#31370#31416#1" />
-            <element signature="e#31422#31568#1" />
-            <element signature="e#31646#31724#0" />
-            <element signature="e#32653#32695#0" expanded="true" />
-            <element signature="e#33844#34175#0" expanded="true" />
-            <element signature="e#34174#34175#0" expanded="true" />
-            <element signature="e#34177#34384#0" expanded="true" />
-            <element signature="e#34383#34384#0" expanded="true" />
+            <element signature="e#32824#32853#0" expanded="true" />
+            <element signature="e#32986#33013#0" expanded="true" />
+            <element signature="e#33097#34867#0" />
+            <element signature="e#36136#36341#0" expanded="true" />
+            <element signature="e#36340#36341#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,21 +1,21 @@
 /*
- * Steps for uploading to ESP8266
- * 
- * 1a. Change Tools>Board to 'Generic ESP8266 Module'
- * 1b. Change Tools>Port to be the correct port
- * 1c. Compile changes
- * 2a. Connect USB to Arduino Nano
- * 2b. Connect Nano RST pin to GND
- * 2c. Connect ESP Rx --> Nano Rx
- * 2d. Connect ESP Tx --> Nano Tx
- * 2e. Disconnect IO2 from everything.
- * 3a. Hold ESP RST to GND and ESP IO0 to GND
- * 3b. Click upload on Arduino IDE
- * 3c. Wait for Arduino IDE output to read "Connecting........_____..." 
- * 3d. Release ESP RST 
- * 3e. Release ESP IO0
- * 4a. On a successful connection, you'll see something like: 
-```
+   Steps for uploading to ESP8266
+
+   1a. Change Tools>Board to 'Generic ESP8266 Module'
+   1b. Change Tools>Port to be the correct port
+   1c. Compile changes
+   2a. Connect USB to Arduino Nano
+   2b. Connect Nano RST pin to GND
+   2c. Connect ESP Rx --> Nano Rx
+   2d. Connect ESP Tx --> Nano Tx
+   2e. Disconnect IO2 from everything.
+   3a. Hold ESP RST to GND and ESP IO0 to GND
+   3b. Click upload on Arduino IDE
+   3c. Wait for Arduino IDE output to read "Compiling"
+   3d. Release ESP RST
+   3e. Release ESP IO0
+   4a. On a successful connection, you'll see something like:
+  ```
   Chip is ESP8266EX
   Features: WiFi
   MAC: 2c:f4:32:0f:95:e2
@@ -26,7 +26,7 @@
   Auto-detected Flash size: 1MB
   Flash params set to 0x0320
   Compressed 295648 bytes to 211834...
-  
+
   Writing at 0x00000000... (7 %)
   Writing at 0x00004000... (15 %)
   Writing at 0x00008000... (23 %)
@@ -42,20 +42,29 @@
   Writing at 0x00030000... (100 %)
   Wrote 295648 bytes (211834 compressed) at 0x00000000 in 18.8 seconds (effective 125.6 kbit/s)...
   Hash of data verified.
-  
+
   Leaving...
   Hard resetting via RTS pin...
-```
- * 4b. It is extremely finicky, so you'll have to repeat steps 3a --> 3e a couple times, usually 10 or 15
- * 5a. after you see these two lines:
-```
+  ```
+   4b. It is extremely finicky, so you'll have to repeat steps 3a --> 3e a couple times, usually 10 or 15
+       Sometimes I get good results from releasing IO0 and RST while it's compiling
+   5a. after you see these two lines:
+  ```
   Leaving...
   Hard resetting via RTS pin...
-```
- * 5b. Make sure ESP IO0 isn't connected to ground
- * 5c. Connect ESP RST to ground, then release it 
- * 6.  The ESP will restart and run the code that you've just uploaded
- */
+  ```
+   5b. Make sure ESP IO0 isn't connected to ground
+   5c. Connect ESP RST to ground, then release it
+   6.  The ESP will restart and run the code that you've just uploaded
+
+   TROUBLESHOOTING
+
+   If the ESP crashes the Exception Cause will be shown and the current stack will be dumped.
+      This website has a list of exceptions and their hex number:
+          https://arduino-esp8266.readthedocs.io/en/latest/exception_causes.html
+      The tool EspExceptionDecoder (https://github.com/me-no-dev/EspExceptionDecoder) works to
+          decode the ESP8266 Stack dump into readable error messages
+*/
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
@@ -63,6 +72,7 @@
 const char* ssid = "riversong";
 const char* password = "melodypond";
 int numStations = 0;
+boolean shouldPrint = true;
 
 ESP8266WebServer server(80);
 
@@ -111,10 +121,6 @@ void setup() {
   Serial.print("Access Point '");
   Serial.print(ssid);
   Serial.println("' started");
-  Serial.print("IP address:\t");
-  // Send the IP address of the ESP8266 to the computer
-
-
 
   // Setup the endpoints for the server:
   server.on("/", []() {
@@ -136,8 +142,11 @@ void loop() {
     Serial.println(WiFi.softAPgetStationNum());
     numStations = WiFi.softAPgetStationNum();
   }
-  if (millis() % 2000 == 0) {
+  if (millis() % 2000 == 0 && shouldPrint) {
     Serial.print(".");
+    shouldPrint = false;
+  } else if (millis() % 2000 > 0) {
+    shouldPrint = true;
   }
 
   //  Serial.println("h");

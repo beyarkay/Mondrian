@@ -75,6 +75,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
 
     private static final String TAG = "(╯°□°)╯︵ ┻━┻";
+    private static final String ENDPOINT_SERIAL = "serial?data=";
+    private static final String ENDPOINT_LED = "led?state=";
+    private static final String ENDPOINT_ROOT = "";
+    private static final String CMD_LEFT = "l";
+    private static final String CMD_RIGHT = "r";
+    private static final String CMD_FOREWARDS = "f";
+    private static final String CMD_BACKWARDS = "b";
+    private static final String CMD_HALT = "h";
+
     private final Scalar[] COLOURS = new Scalar[]{
             new Scalar(83, 200, 172),
             new Scalar(170, 214, 132),
@@ -905,7 +914,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 }
                 break;
             case R.id.btnSend:
-                sendHttpSerial(etData.getText().toString());
+                sendHttp(etData.getText().toString());
                 break;
         }
         view.setEnabled(true);
@@ -923,16 +932,22 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 Log.d(TAG, ((Button) view).getText().toString() + " PUSHED");
                 switch (view.getId()) {
                     case R.id.btnForewards:
+                        sendHttp(ENDPOINT_SERIAL + CMD_FOREWARDS);
                         break;
                     case R.id.btnBackwards:
+                        sendHttp(ENDPOINT_SERIAL + CMD_BACKWARDS);
                         break;
                     case R.id.btnLeft:
+                        sendHttp(ENDPOINT_SERIAL + CMD_LEFT);
                         break;
                     case R.id.btnRight:
+                        sendHttp(ENDPOINT_SERIAL + CMD_RIGHT);
                         break;
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                sendHttp(ENDPOINT_SERIAL + CMD_HALT);
+
                 break;
         }
         return true;
@@ -978,11 +993,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
     }
 
-    private void sendHttpSerial(String data) {
+    private void sendHttp(String data) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.4.1/serial?data=" + data;
-        Log.d(TAG, "sendHttpSerial: " + url);
+        String url = "http://192.168.4.1/" + data;
+        Log.d(TAG, "sendHttp: " + url);
 
 
         // Request a string response from the provided URL.
@@ -991,11 +1006,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        Log.d(TAG, "Response is: " + response.substring(0, 500));
+                        Log.d(TAG, "Response is: " + response.substring(0, Math.min(response.length(), 500)));
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            etData.setText(Html.fromHtml(response, Html.FROM_HTML_MODE_COMPACT));
+                            tvHtml.setText(Html.fromHtml(response, Html.FROM_HTML_MODE_LEGACY));    // ..._LEGACY Flag ensures line breaks in the right places
                         } else {
-                            etData.setText(Html.fromHtml(response));
+                            tvHtml.setText(Html.fromHtml(response));
                         }
                     }
                 }, new Response.ErrorListener() {

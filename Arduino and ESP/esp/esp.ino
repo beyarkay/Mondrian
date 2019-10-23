@@ -78,16 +78,16 @@ ESP8266WebServer server(80);
 String makeHtmlForm(String state) {
   String form = String("<form action='led'>") +
                 "<input type='radio' name='state' value='on' checked>Turn On" +
-                "</br></br>" +
+                "<br /><br />" +
                 "<input type='radio' name='state' value='off'>Turn Off" +
-                "</br></br>" +
+                "<br /><br />" +
                 "<input type='submit' value='Submit'>" +
                 "</form>" +
                 "<p>Status: " +
                 state +
                 "</p>" +
-                "</br></br>" +
-                "<a href='/serial?data=somedata'>clickity clickity</a>";
+                "<br /><br />" +
+                "<a href='/serial?data=somedata'>Send '/serial?data=somedata'</a>";
   return form;
 }
 
@@ -105,7 +105,7 @@ void handleLed() {
 void handleSerial() {
   String data = server.arg("data"); //http ://<ip address>/serial?data=thisissomedata
   Serial.println(data);
-  server.send(200, "text/html", makeHtmlForm("Data sent: " + data));
+  server.send(200, "text/html", makeHtmlForm(data));
 }
 
 
@@ -136,6 +136,7 @@ void setup() {
 
 void loop() {
   server.handleClient();
+
   if (numStations != WiFi.softAPgetStationNum()) {
     Serial.print("\nNumber of connected stations: ");
     Serial.println(WiFi.softAPgetStationNum());
@@ -147,11 +148,4 @@ void loop() {
   } else if (millis() % 2000 > 0) {
     shouldPrint = true;
   }
-
-  //  Serial.println("h");
-  //  digitalWrite(LED_BUILTIN, HIGH);
-  //  delay(1000);
-  //  Serial.println("l");
-  //  digitalWrite(LED_BUILTIN, LOW);
-  //  delay(2000);
 }

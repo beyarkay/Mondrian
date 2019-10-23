@@ -47,7 +47,6 @@
   Hard resetting via RTS pin...
   ```
    4b. It is extremely finicky, so you'll have to repeat steps 3a --> 3e a couple times, usually 10 or 15
-       Sometimes I get good results from releasing IO0 and RST while it's compiling
    5a. after you see these two lines:
   ```
   Leaving...

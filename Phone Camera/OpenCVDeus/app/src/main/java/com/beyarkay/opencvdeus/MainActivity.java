@@ -9,9 +9,11 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.text.Html;
 import android.util.Log;
 import android.util.Rational;
 import android.util.Size;
@@ -23,9 +25,9 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -106,13 +108,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     //    Button btnCapture, btnOk, btnCancel;
     Button btnLeft, btnRight, btnForewards, btnBackwards, btnConnect;
-    int slider1;      // Threshold
-    int slider2;      // size in mm
-    int slider3;      // Canny thresh 1
-    int slider4;      // Canny thresh 2
-    int slider5;
-    int slider6;
+//    int slider1;      // Threshold
+//    int slider2;      // size in mm
+//    int slider3;      // Canny thresh 1
+//    int slider4;      // Canny thresh 2
+//    int slider5;
+//    int slider6;
 
+
+    EditText etData;
+    TextView tvHtml;
 
     TextView tvSlider2;
     TextView tvSlider1;
@@ -146,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         btnLeft = findViewById(R.id.btnLeft);
         btnRight = findViewById(R.id.btnRight);
         btnConnect = findViewById(R.id.btnConnect);
+
         btnBackwards.setOnTouchListener(this);
         btnForewards.setOnTouchListener(this);
         btnLeft.setOnTouchListener(this);
@@ -155,74 +161,78 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 //        btnOk.setOnClickListener(this);
 //        btnCancel.setOnClickListener(this);
 
-        llBottom = findViewById(R.id.llBottom);
+//        llBottom = findViewById(R.id.llBottom);
         textureView = findViewById(R.id.textureView);
         ivBitmap = findViewById(R.id.ivBitmap);
 
-        tvSlider1 = findViewById(R.id.tvSlider1);
-        tvSlider2 = findViewById(R.id.tvSlider2);
-        tvSlider3 = findViewById(R.id.tvSlider3);
-        tvSlider4 = findViewById(R.id.tvSlider4);
-        tvSlider5 = findViewById(R.id.tvSlider5);
-        tvSlider6 = findViewById(R.id.tvSlider6);
+//        tvSlider1 = findViewById(R.id.tvSlider1);
+//        tvSlider2 = findViewById(R.id.tvSlider2);
+//        tvSlider3 = findViewById(R.id.tvSlider3);
+//        tvSlider4 = findViewById(R.id.tvSlider4);
+//        tvSlider5 = findViewById(R.id.tvSlider5);
+//        tvSlider6 = findViewById(R.id.tvSlider6);
+//
+//        slider1 = Integer.parseInt(getString(R.string.default_slider_1));
+//        slider2 = Integer.parseInt(getString(R.string.default_slider_2));
+//        slider3 = Integer.parseInt(getString(R.string.default_slider_3));
+//        slider4 = Integer.parseInt(getString(R.string.default_slider_4));
+//        slider5 = Integer.parseInt(getString(R.string.default_slider_5));
+//        slider6 = Integer.parseInt(getString(R.string.default_slider_6));
 
-        slider1 = Integer.parseInt(getString(R.string.default_slider_1));
-        slider2 = Integer.parseInt(getString(R.string.default_slider_2));
-        slider3 = Integer.parseInt(getString(R.string.default_slider_3));
-        slider4 = Integer.parseInt(getString(R.string.default_slider_4));
-        slider5 = Integer.parseInt(getString(R.string.default_slider_5));
-        slider6 = Integer.parseInt(getString(R.string.default_slider_6));
+
+        etData = findViewById(R.id.etData);
+        tvHtml = findViewById(R.id.tvHtml);
 
         llHue = findViewById(R.id.ll1and2);
         llSat = findViewById(R.id.ll3and4);
 
-        SeekBar.OnSeekBarChangeListener sbListener = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateSeekBars(progress, seekBar.getId());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        };
-
-        SeekBar sbSlider1 = findViewById(R.id.sbSlider1);
-        sbSlider1.setOnSeekBarChangeListener(sbListener);
-
-        SeekBar sbSlider2 = findViewById(R.id.sbSlider2);
-        sbSlider2.setOnSeekBarChangeListener(sbListener);
-
-        SeekBar sbSlider3 = findViewById(R.id.sbSlider3);
-        sbSlider3.setOnSeekBarChangeListener(sbListener);
-
-        SeekBar sbSlider4 = findViewById(R.id.sbSlider4);
-        sbSlider4.setOnSeekBarChangeListener(sbListener);
-
-        SeekBar sbSlider5 = findViewById(R.id.sbSlider5);
-        sbSlider5.setOnSeekBarChangeListener(sbListener);
-
-        SeekBar sbSlider6 = findViewById(R.id.sbSlider6);
-        sbSlider6.setOnSeekBarChangeListener(sbListener);
-
-        sbSlider1.setProgress(Integer.parseInt(getString(R.string.default_slider_1)));
-        tvSlider1.setText(getString(R.string.default_slider_1));
-        sbSlider2.setProgress(Integer.parseInt(getString(R.string.default_slider_2)));
-        tvSlider2.setText(getString(R.string.default_slider_2));
-        sbSlider3.setProgress(Integer.parseInt(getString(R.string.default_slider_3)));
-        tvSlider3.setText(getString(R.string.default_slider_3));
-        sbSlider4.setProgress(Integer.parseInt(getString(R.string.default_slider_4)));
-        tvSlider4.setText(getString(R.string.default_slider_4));
-        sbSlider5.setProgress(Integer.parseInt(getString(R.string.default_slider_5)));
-        tvSlider5.setText(getString(R.string.default_slider_5));
-        sbSlider6.setProgress(Integer.parseInt(getString(R.string.default_slider_6)));
-        tvSlider6.setText(getString(R.string.default_slider_6));
+//        SeekBar.OnSeekBarChangeListener sbListener = new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                updateSeekBars(progress, seekBar.getId());
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        };
+//
+//        SeekBar sbSlider1 = findViewById(R.id.sbSlider1);
+//        sbSlider1.setOnSeekBarChangeListener(sbListener);
+//
+//        SeekBar sbSlider2 = findViewById(R.id.sbSlider2);
+//        sbSlider2.setOnSeekBarChangeListener(sbListener);
+//
+//        SeekBar sbSlider3 = findViewById(R.id.sbSlider3);
+//        sbSlider3.setOnSeekBarChangeListener(sbListener);
+//
+//        SeekBar sbSlider4 = findViewById(R.id.sbSlider4);
+//        sbSlider4.setOnSeekBarChangeListener(sbListener);
+//
+//        SeekBar sbSlider5 = findViewById(R.id.sbSlider5);
+//        sbSlider5.setOnSeekBarChangeListener(sbListener);
+//
+//        SeekBar sbSlider6 = findViewById(R.id.sbSlider6);
+//        sbSlider6.setOnSeekBarChangeListener(sbListener);
+//
+//        sbSlider1.setProgress(Integer.parseInt(getString(R.string.default_slider_1)));
+//        tvSlider1.setText(getString(R.string.default_slider_1));
+//        sbSlider2.setProgress(Integer.parseInt(getString(R.string.default_slider_2)));
+//        tvSlider2.setText(getString(R.string.default_slider_2));
+//        sbSlider3.setProgress(Integer.parseInt(getString(R.string.default_slider_3)));
+//        tvSlider3.setText(getString(R.string.default_slider_3));
+//        sbSlider4.setProgress(Integer.parseInt(getString(R.string.default_slider_4)));
+//        tvSlider4.setText(getString(R.string.default_slider_4));
+//        sbSlider5.setProgress(Integer.parseInt(getString(R.string.default_slider_5)));
+//        tvSlider5.setText(getString(R.string.default_slider_5));
+//        sbSlider6.setProgress(Integer.parseInt(getString(R.string.default_slider_6)));
+//        tvSlider6.setText(getString(R.string.default_slider_6));
 
 
         if (allPermissionsGranted()) {
@@ -232,34 +242,34 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
     }
 
-    private void updateSeekBars(int progress, int id) {
-        switch (id) {
-            case R.id.sbSlider1:
-                slider1 = progress;
-                tvSlider1.setText(String.format("%d", slider1));
-                break;
-            case R.id.sbSlider2:
-                slider2 = progress;
-                tvSlider2.setText(String.format("%d", slider2));
-                break;
-            case R.id.sbSlider3:
-                slider3 = progress;
-                tvSlider3.setText(String.format("%d", slider3));
-                break;
-            case R.id.sbSlider4:
-                slider4 = progress;
-                tvSlider4.setText(String.format("%d", slider4));
-                break;
-            case R.id.sbSlider5:
-                slider5 = progress;
-                tvSlider5.setText(String.format("%d", slider5));
-                break;
-            case R.id.sbSlider6:
-                slider6 = progress;
-                tvSlider6.setText(String.format("%d", slider6));
-                break;
-        }
-    }
+//    private void updateSeekBars(int progress, int id) {
+//        switch (id) {
+//            case R.id.sbSlider1:
+//                slider1 = progress;
+//                tvSlider1.setText(String.format("%d", slider1));
+//                break;
+//            case R.id.sbSlider2:
+//                slider2 = progress;
+//                tvSlider2.setText(String.format("%d", slider2));
+//                break;
+//            case R.id.sbSlider3:
+//                slider3 = progress;
+//                tvSlider3.setText(String.format("%d", slider3));
+//                break;
+//            case R.id.sbSlider4:
+//                slider4 = progress;
+//                tvSlider4.setText(String.format("%d", slider4));
+//                break;
+//            case R.id.sbSlider5:
+//                slider5 = progress;
+//                tvSlider5.setText(String.format("%d", slider5));
+//                break;
+//            case R.id.sbSlider6:
+//                slider6 = progress;
+//                tvSlider6.setText(String.format("%d", slider6));
+//                break;
+//        }
+//    }
 
     private void startCamera() {
 
@@ -369,7 +379,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     public void analyze(ImageProxy image, int rotationDegrees) {
                         //Analyzing live camera feed begins.
                         final Bitmap bitmap = textureView.getBitmap();
-                        float length = slider2 / 1000.0f;
+//                        float length = slider2 / 1000.0f;
+                        float length = 0.014f / 1000.0f;
 
                         if (bitmap == null)
                             return;
@@ -459,9 +470,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         Mat original = new Mat();
         Utils.bitmapToMat(bitmap, original);
 
-        double thresh = slider1;
-        double canny_thresh2 = slider3 / 255.0;
-        double canny_thresh1 = slider4 / 255.0;
+        double thresh = 140.0;
+        double canny_thresh2 = 50.0 / 255.0;
+        double canny_thresh1 = 80.0 / 255.0;
         double thresh_max = 255;
 
         if (thresh == 0.0) {
@@ -478,7 +489,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         Mat cannyMat = new Mat();
         Imgproc.Canny(thresholdMat, cannyMat, canny_thresh1, canny_thresh2);
-        Imgproc.putText(cannyMat, slider2 + "mm side length", new Point(20, 40), Core.FONT_HERSHEY_PLAIN, 3, COLOURS[9], 1);
+        Imgproc.putText(cannyMat, "50mm side length", new Point(20, 40), Core.FONT_HERSHEY_PLAIN, 3, COLOURS[9], 1);
 
 
         List<MatOfPoint> deepContours = getDeepContours(cannyMat);
@@ -882,34 +893,42 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
 
+    public void onClick(View view) {
+        view.setEnabled(false);
+        switch (view.getId()) {
+            case R.id.btnConnect:
+                Log.d(TAG, "onClick: Attempting to Connect to riversong - melodypond");
+                if (connectToNetworkWPA("riversong", "melodypond")) {
+                    ((Button) view).setText(getString(R.string.connected));
+                } else {
+                    ((Button) view).setText(getString(R.string.connect));
+                }
+                break;
+            case R.id.btnSend:
+                sendHttpSerial(etData.getText().toString());
+                break;
+        }
+        view.setEnabled(true);
+    }
+
+
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
+    public boolean onTouch(View view, MotionEvent event) {
+        if (view.getId() == R.id.btnConnect || view.getId() == R.id.btnSend) {
+            return false;
+        }
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                Log.d(TAG, ((Button) v).getText().toString() + " PUSHED");
-
-                switch (v.getId()) {
-                    case R.id.btnConnect:
-                        if (connectToNetworkWPA("riversong", "melodypond")) {
-                            v.setEnabled(false);
-                            ((Button) v).setText(getString(R.string.connected));
-                        } else {
-                            v.setEnabled(true);
-                            ((Button) v).setText(getString(R.string.connect));
-                        }
-                        break;
+                Log.d(TAG, ((Button) view).getText().toString() + " PUSHED");
+                switch (view.getId()) {
                     case R.id.btnForewards:
-                        sendHttpSerial("h");
                         break;
                     case R.id.btnBackwards:
-                        sendHttpSerial("l");
-
                         break;
                     case R.id.btnLeft:
-                        sendHttpSerial("s");
                         break;
                     case R.id.btnRight:
-
                         break;
                 }
                 break;
@@ -924,7 +943,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         try {
             WifiConfiguration conf = new WifiConfiguration();
             conf.SSID = "\"" + networkSSID + "\"";
-
             conf.preSharedKey = "\"" + password + "\"";
 
             conf.status = WifiConfiguration.Status.ENABLED;
@@ -934,13 +952,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
             conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
 
-            Log.d("connecting", conf.SSID + " " + conf.preSharedKey);
+            Log.d(TAG, "connectToNetworkWPA: Connecting to: " + conf.SSID + " " + conf.preSharedKey);
 
             WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             wifiManager.addNetwork(conf);
-
-            Log.d("after connecting", conf.SSID + " " + conf.preSharedKey);
-
 
             List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
             for (WifiConfiguration i : list) {
@@ -948,13 +963,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     wifiManager.disconnect();
                     wifiManager.enableNetwork(i.networkId, true);
                     wifiManager.reconnect();
-                    Log.d("re connecting", i.SSID + " " + conf.preSharedKey);
+                    Log.d(TAG, "connectToNetworkWPA: reconnecting" + i.SSID + " " + conf.preSharedKey);
                     break;
                 }
             }
 
             //WiFi Connection success, return true
-            return true;
+            Log.d(TAG, "connectToNetworkWPA: Current SSID: " + wifiManager.getConnectionInfo().getSSID());
+            return wifiManager.getConnectionInfo().getSSID().equals(networkSSID);
+
         } catch (Exception ex) {
             System.out.println(Arrays.toString(ex.getStackTrace()));
             return false;
@@ -967,6 +984,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         String url = "http://192.168.4.1/serial?data=" + data;
         Log.d(TAG, "sendHttpSerial: " + url);
 
+
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -974,6 +992,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
                         Log.d(TAG, "Response is: " + response.substring(0, 500));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            etData.setText(Html.fromHtml(response, Html.FROM_HTML_MODE_COMPACT));
+                        } else {
+                            etData.setText(Html.fromHtml(response));
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -987,4 +1010,3 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         queue.add(stringRequest);
     }
 }
-

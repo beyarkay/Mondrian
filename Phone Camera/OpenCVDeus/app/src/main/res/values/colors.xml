@@ -6,5 +6,5 @@
     <color name="rejectedRed">#FF0000</color>
     <color name="acceptedGreen">#00FF00</color>
     <color name="white">#FFFFFF</color>
-    <color name="white_transparent">#B0FFFFFF</color>
+    <color name="white_transparent">#BFFF</color>
 </resources>

@@ -37,5 +37,7 @@
     <string name="backwards">Backwards</string>
     <string name="connect">Connect</string>
     <string name="connected">Connected</string>
+    <string name="send">Send</string>
+    <string name="html_default">This\nWill\nSoon\nBe\nHTML\n!</string>
 
 </resources>

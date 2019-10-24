@@ -938,7 +938,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         sendHttp(ENDPOINT_SERIAL + CMD_BACKWARDS);
                         break;
                     case R.id.btnLeft:
-                        sendHttp(ENDPOINT_SERIAL + CMD_LEFT);
+                        sendHttp(ENDPOINT_SERIAL +  CMD_LEFT);
                         break;
                     case R.id.btnRight:
                         sendHttp(ENDPOINT_SERIAL + CMD_RIGHT);

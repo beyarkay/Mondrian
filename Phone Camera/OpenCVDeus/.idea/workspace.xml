@@ -72,18 +72,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa4d554a-6b04-4e97-adae-749457673106" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Arduino and ESP/esp/esp.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../../Arduino and ESP/esp/esp.ino" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Arduino and ESP/nano/nano.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../../Arduino and ESP/nano/nano.ino" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,8 +105,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="77" column="32" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
+            <state relative-caret-position="236">
+              <caret line="940" column="51" selection-start-line="940" selection-start-column="51" selection-end-line="940" selection-end-column="51" />
               <folding>
                 <element signature="e#3619#3655#0" />
                 <element signature="initializer##0;class#MainActivity#0" />
@@ -501,6 +490,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-350" width="1600" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.5008" side_tool="true" weight="0.1881259" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4992" visible="true" weight="0.18741977" />
@@ -880,8 +870,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="77" column="32" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
+        <state relative-caret-position="236">
+          <caret line="940" column="51" selection-start-line="940" selection-start-column="51" selection-end-line="940" selection-end-column="51" />
           <folding>
             <element signature="e#3619#3655#0" />
             <element signature="initializer##0;class#MainActivity#0" />

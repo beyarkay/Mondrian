@@ -68,10 +68,12 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
+const boolean DEBUG = false;
 const char* ssid = "riversong";
 const char* password = "melodypond";
 int numStations = 0;
 boolean shouldPrint = true;
+
 
 ESP8266WebServer server(80);
 
@@ -86,9 +88,18 @@ String makeHtmlForm(String state) {
                 "<p>Status: " +
                 state +
                 "</p>" +
-                "<br /><br />" +
+                "<br />" +
                 "<a href='/serial?data=somedata'>Send '/serial?data=somedata'</a>";
   return form;
+}
+
+void handleSerial() {
+  // Get the input from the client
+  String data = server.arg("data"); //http ://<ip address>/serial?data=thisissomedata
+  // Send that data off to the nano, over the Serial
+  Serial.println(data);
+  // Send a confirmation response to the client
+  server.send(200, "text/html", makeHtmlForm(data));
 }
 
 void handleLed() {
@@ -102,25 +113,20 @@ void handleLed() {
   server.send(200, "text/html", makeHtmlForm(state));
 }
 
-void handleSerial() {
-  String data = server.arg("data"); //http ://<ip address>/serial?data=thisissomedata
-  Serial.println(data);
-  server.send(200, "text/html", makeHtmlForm(data));
-}
-
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
   Serial.begin(115200);
   delay(10);
-  Serial.println('\n');
-
   WiFi.softAP(ssid, password);             // Start the access point
-  Serial.print("Access Point '");
-  Serial.print(ssid);
-  Serial.println("' started");
 
+  if (DEBUG) {
+    Serial.println('\n');
+    Serial.print("Access Point '");
+    Serial.print(ssid);
+    Serial.println("' started");
+  }
   // Setup the endpoints for the server:
   server.on("/", []() {
     server.send(200, "text/html", makeHtmlForm("unknown"));
@@ -130,19 +136,23 @@ void setup() {
 
   server.begin();
 
-  Serial.print("HTTP server started at: http://");
-  Serial.println(WiFi.softAPIP());
+  if (DEBUG) {
+    Serial.print("HTTP server started at: http://");
+    Serial.println(WiFi.softAPIP());
+  }
 }
 
 void loop() {
   server.handleClient();
 
   if (numStations != WiFi.softAPgetStationNum()) {
-    Serial.print("\nNumber of connected stations: ");
-    Serial.println(WiFi.softAPgetStationNum());
+    if (DEBUG) {
+      Serial.print("\nNumber of connected stations: ");
+      Serial.println(WiFi.softAPgetStationNum());
+    }
     numStations = WiFi.softAPgetStationNum();
   }
-  if (millis() % 2000 == 0 && shouldPrint) {
+  if (millis() % 2000 == 0 && shouldPrint && DEBUG) {
     Serial.print(".");
     shouldPrint = false;
   } else if (millis() % 2000 > 0) {

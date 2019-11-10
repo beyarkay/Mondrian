@@ -40,45 +40,27 @@ A robot to draw on a flat surface, with local positioning done through a moving 
 ![ss_1_aruco.jpg](readme_resources/ss_1_aruco.jpg) ![ss_2_aruco.jpg](readme_resources/ss_2_aruco.jpg)
 
 # File Structure
-
-Mondrian
-
-├── Arduino\ and\ ESP
-
-│   ├── esp
-
-│   │   └── esp.ino
-
-│   ├── james.fzz
-
-│   ├── james.ino
-
-│   │   ├── james
-
-│   │   │   └── james.ino
-
-│   │   └── james.ino.ino
-
-│   ├── james_bb.png
-
-│   ├── nano
-
-│   │   └── nano.ino
-
-│   └── uno
-
-│       └── uno.ino
-
-├── Phone\ Camera
-
-│   ├── Aruco\ Markers.pdf
-
-│   └── OpenCVDeus
-
-│       ├── `// In here is the Android Studio Project`
-
-└── README.md
-
+```
+Mondrian  
+├── Arduino\ and\ ESP  
+│   ├── esp  
+│   │   └── esp.ino  
+│   ├── james.fzz  
+│   ├── james.ino  
+│   │   ├── james  
+│   │   │   └── james.ino  
+│   │   └── james.ino.ino  
+│   ├── james_bb.png  
+│   ├── nano  
+│   │   └── nano.ino  
+│   └── uno  
+│       └── uno.ino  
+├── Phone\ Camera  
+│   ├── Aruco\ Markers.pdf  
+│   └── OpenCVDeus  
+│       ├── `// In here is the Android Studio Project`  
+└── README.md  
+```
 
 
 # Uploading Code to the ESP8266

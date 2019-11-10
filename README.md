@@ -17,11 +17,19 @@ A robot to draw on a flat surface, with local positioning done through a moving 
 * The robot has no means of determining it's location onboard, and relies entirely on the android app.
 * The ESP8266-01 starts an access point and basic HTTP server when it's powered up to which the android app connects.
 
-### Breadboard and circuit Diagram
+### Breadboard
 
 ![breadboard.jpg](readme_resources/breadboard.jpg)
 
+### Circuit Diagram
+
 ![james_bb.png](readme_resources/james_bb.png)
+
+
+### Example Aruco Markers
+
+![aruco_markers.png](readme_resources/aruco_markers.png)
+
 
 
 ## 2. The Phone Camera
@@ -64,6 +72,8 @@ Mondrian
 
 
 # Uploading Code to the ESP8266
+
+Unfortunately, the ESP8266-01 can be very finicky, but below is the best way I've found to flash it and upload code.
 
 * Write code for the ESP8266
 * Change board to 'Generic ESP8266 Module'

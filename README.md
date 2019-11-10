@@ -17,7 +17,7 @@ A robot to draw on a flat surface, with local positioning done through a moving 
 * The robot has no means of determining it's location onboard, and relies entirely on the android app.
 * The ESP8266-01 starts an access point and basic HTTP server when it's powered up to which the android app connects.
 
-### Images
+### Breadboard and circuit Diagram
 
 ![breadboard.jpg](readme_resources/breadboard.jpg)
 
@@ -42,24 +42,43 @@ A robot to draw on a flat surface, with local positioning done through a moving 
 # File Structure
 
 Mondrian
+
 ├── Arduino\ and\ ESP
+
 │   ├── esp
+
 │   │   └── esp.ino
+
 │   ├── james.fzz
+
 │   ├── james.ino
+
 │   │   ├── james
+
 │   │   │   └── james.ino
+
 │   │   └── james.ino.ino
+
 │   ├── james_bb.png
+
 │   ├── nano
+
 │   │   └── nano.ino
+
 │   └── uno
+
 │       └── uno.ino
+
 ├── Phone\ Camera
+
 │   ├── Aruco\ Markers.pdf
+
 │   └── OpenCVDeus
-│       ├── // In here is the Android Studio Project
+
+│       ├── `// In here is the Android Studio Project`
+
 └── README.md
+
 
 
 # Uploading Code to the ESP8266

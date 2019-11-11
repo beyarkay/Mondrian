@@ -67,6 +67,8 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -998,6 +1000,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://192.168.4.1/" + data;
         Log.d(TAG, "sendHttp: " + url);
+        tvHtml.setText("sendHttp: " + url);
+
 
 
         // Request a string response from the provided URL.
@@ -1016,6 +1020,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+//
+//                StringBuilder e = new StringBuilder();
+//                for (int i = 0; i < error.getStackTrace().length; i++) {
+//                    e.append(error.getStackTrace()[i]);
+//                    e.append("\n\t");
+//                }
+
+                StringWriter sw = new StringWriter();
+                error.printStackTrace(new PrintWriter(sw));
+                Log.e(TAG, sw.toString());
+
+                tvHtml.setText(System.currentTimeMillis() + ": \n" + sw.toString());
+
                 Log.d(TAG, "That didn't work!: ");
                 error.printStackTrace();
             }

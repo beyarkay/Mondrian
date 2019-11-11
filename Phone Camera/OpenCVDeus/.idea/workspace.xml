@@ -6,7 +6,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="opencvdeus" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
@@ -72,7 +71,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa4d554a-6b04-4e97-adae-749457673106" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Arduino and ESP/nano/nano.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../../Arduino and ESP/nano/nano.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Arduino and ESP/esp/esp.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../../Arduino and ESP/esp/esp.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../readme_resources/aruco_markers.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../readme_resources/aruco_markers.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,104 +112,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="940" column="51" selection-start-line="940" selection-start-column="51" selection-end-line="940" selection-end-column="51" />
+            <state relative-caret-position="233">
+              <caret line="1028" selection-start-line="1028" selection-end-line="1028" />
               <folding>
-                <element signature="e#3619#3655#0" />
                 <element signature="initializer##0;class#MainActivity#0" />
-                <element signature="e#4232#8629#0" />
-                <element signature="e#4393#4446#0" />
-                <element signature="e#5031#5072#0" />
-                <element signature="e#5273#5324#0" />
-                <element signature="e#6224#6318#0" />
-                <element signature="e#8467#8505#1" />
-                <element signature="e#8511#8623#1" />
-                <element signature="e#8631#8688#0" />
-                <element signature="e#9728#10017#0" />
-                <element signature="e#10023#11147#0" />
-                <element signature="e#11153#13251#0" />
-                <element signature="e#11506#11574#0" />
-                <element signature="e#13257#16472#0" />
-                <element signature="e#15646#16043#1" />
-                <element signature="e#16478#17130#0" />
-                <element signature="e#16510#16549#0" />
-                <element signature="e#16979#17095#1" />
-                <element signature="e#17137#18860#0" />
-                <element signature="e#17503#17540#1" />
-                <element signature="e#18373#18500#1" />
-                <element signature="e#18866#20517#0" />
-                <element signature="e#19611#20360#1" />
-                <element signature="e#19717#20268#1" />
-                <element signature="e#19957#20254#1" />
-                <element signature="e#20119#20236#1" />
-                <element signature="e#20312#20350#1" />
-                <element signature="e#20523#21680#0" />
-                <element signature="e#21199#21625#1" />
-                <element signature="e#21346#21407#1" />
-                <element signature="e#21413#21615#1" />
-                <element signature="e#21687#23785#0" />
-                <element signature="e#21784#21823#1" />
-                <element signature="e#22259#22338#1" />
-                <element signature="e#22368#22447#1" />
-                <element signature="e#22477#22556#1" />
-                <element signature="e#22562#22661#1" />
-                <element signature="e#23174#23237#1" />
-                <element signature="e#23243#23306#1" />
-                <element signature="e#23791#24305#0" />
-                <element signature="e#23885#24299#1" />
-                <element signature="e#23940#24289#1" />
-                <element signature="e#24311#25192#0" />
-                <element signature="e#24490#25186#1" />
-                <element signature="e#24647#24981#1" />
-                <element signature="e#25198#27040#0" />
-                <element signature="e#26812#27034#1" />
-                <element signature="e#27047#27187#0" />
-                <element signature="e#27193#28361#0" />
-                <element signature="e#27350#27531#1" />
-                <element signature="e#27568#28298#0" />
-                <element signature="e#27606#27650#1" />
-                <element signature="e#28004#28068#0" />
-                <element signature="e#28319#28355#0" />
-                <element signature="e#28363#28436#0" />
-                <element signature="e#29076#29945#0" />
-                <element signature="e#29410#29848#0" />
-                <element signature="e#29951#30239#0" />
-                <element signature="e#30049#30212#1" />
-                <element signature="e#30157#30202#1" />
-                <element signature="e#30245#30392#0" />
-                <element signature="e#30398#31165#0" />
-                <element signature="e#30501#31108#0" />
-                <element signature="e#31167#31182#0" />
-                <element signature="e#32298#32741#0" />
-                <element signature="e#32484#32735#1" />
-                <element signature="e#32527#32573#1" />
-                <element signature="e#32579#32725#1" />
-                <element signature="e#32748#33414#0" />
-                <element signature="e#32843#33377#0" />
-                <element signature="e#33035#33130#1" />
-                <element signature="e#33136#33229#1" />
-                <element signature="e#33567#33604#1" />
-                <element signature="e#34241#36143#0" />
-                <element signature="e#34327#36009#0" />
-                <element signature="e#35354#35757#1" />
-                <element signature="e#35436#35743#1" />
-                <element signature="e#36031#36137#0" />
-                <element signature="e#36928#37053#1" />
-                <element signature="e#37059#37155#1" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="38" />
+            <state relative-caret-position="232">
+              <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
               <folding>
                 <element signature="e#344#735#0" />
                 <element signature="e#741#1186#0" />
@@ -284,15 +214,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1440" />
-    <option name="y" value="-350" />
-    <option name="width" value="1600" />
+    <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -304,7 +232,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -316,6 +243,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -489,11 +417,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-350" width="1600" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.5008" side_tool="true" weight="0.1881259" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4992" visible="true" weight="0.18741977" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4992" visible="true" weight="0.1874106" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -502,13 +430,13 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.72746783" weight="0.34578314" />
-      <window_info active="true" anchor="bottom" x="0" y="45" width="1440" height="855" id="Logcat" maximized="true" order="1" sideWeight="0.81044346" type="WINDOWED" visible="true" weight="0.44457832" />
+      <window_info active="true" anchor="bottom" x="0" y="22" width="1440" height="878" id="Logcat" maximized="true" order="1" sideWeight="0.8097282" visible="true" weight="0.3626506" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.7253219" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.16144578" />
       <window_info anchor="bottom" id="Terminal" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5006418" side_tool="true" visible="true" weight="0.08915663" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.19027181" side_tool="true" visible="true" weight="0.3626506" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32866243" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.73363286" weight="0.23253012" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.732475" weight="0.23253012" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.5228916" />
       <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49935815" weight="0.32891566" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -516,7 +444,7 @@
       <window_info anchor="right" id="Gradle" order="2" sideWeight="0.5888" weight="0.3297568" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Preview" order="4" sideWeight="0.655496" weight="0.3297568" />
-      <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="5" sideWeight="0.4112" side_tool="true" visible="true" weight="0.18164313" />
+      <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="5" sideWeight="0.4112" side_tool="true" visible="true" weight="0.3311874" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
     </layout>
     <layout-to-restore>
@@ -577,19 +505,19 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java</url>
-          <line>762</line>
+          <line>764</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java</url>
-          <line>905</line>
+          <line>907</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java</url>
-          <line>929</line>
+          <line>931</line>
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
@@ -856,104 +784,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/java/lang/Throwable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="38" />
+        <state relative-caret-position="157">
+          <caret line="807" column="31" selection-start-line="807" selection-start-column="31" selection-end-line="807" selection-end-column="31" />
           <folding>
-            <element signature="e#344#735#0" />
-            <element signature="e#741#1186#0" />
+            <element signature="e#33831#33832#0" expanded="true" />
+            <element signature="e#33880#33881#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="940" column="51" selection-start-line="940" selection-start-column="51" selection-end-line="940" selection-end-column="51" />
+        <state relative-caret-position="233">
+          <caret line="1028" selection-start-line="1028" selection-end-line="1028" />
           <folding>
-            <element signature="e#3619#3655#0" />
             <element signature="initializer##0;class#MainActivity#0" />
-            <element signature="e#4232#8629#0" />
-            <element signature="e#4393#4446#0" />
-            <element signature="e#5031#5072#0" />
-            <element signature="e#5273#5324#0" />
-            <element signature="e#6224#6318#0" />
-            <element signature="e#8467#8505#1" />
-            <element signature="e#8511#8623#1" />
-            <element signature="e#8631#8688#0" />
-            <element signature="e#9728#10017#0" />
-            <element signature="e#10023#11147#0" />
-            <element signature="e#11153#13251#0" />
-            <element signature="e#11506#11574#0" />
-            <element signature="e#13257#16472#0" />
-            <element signature="e#15646#16043#1" />
-            <element signature="e#16478#17130#0" />
-            <element signature="e#16510#16549#0" />
-            <element signature="e#16979#17095#1" />
-            <element signature="e#17137#18860#0" />
-            <element signature="e#17503#17540#1" />
-            <element signature="e#18373#18500#1" />
-            <element signature="e#18866#20517#0" />
-            <element signature="e#19611#20360#1" />
-            <element signature="e#19717#20268#1" />
-            <element signature="e#19957#20254#1" />
-            <element signature="e#20119#20236#1" />
-            <element signature="e#20312#20350#1" />
-            <element signature="e#20523#21680#0" />
-            <element signature="e#21199#21625#1" />
-            <element signature="e#21346#21407#1" />
-            <element signature="e#21413#21615#1" />
-            <element signature="e#21687#23785#0" />
-            <element signature="e#21784#21823#1" />
-            <element signature="e#22259#22338#1" />
-            <element signature="e#22368#22447#1" />
-            <element signature="e#22477#22556#1" />
-            <element signature="e#22562#22661#1" />
-            <element signature="e#23174#23237#1" />
-            <element signature="e#23243#23306#1" />
-            <element signature="e#23791#24305#0" />
-            <element signature="e#23885#24299#1" />
-            <element signature="e#23940#24289#1" />
-            <element signature="e#24311#25192#0" />
-            <element signature="e#24490#25186#1" />
-            <element signature="e#24647#24981#1" />
-            <element signature="e#25198#27040#0" />
-            <element signature="e#26812#27034#1" />
-            <element signature="e#27047#27187#0" />
-            <element signature="e#27193#28361#0" />
-            <element signature="e#27350#27531#1" />
-            <element signature="e#27568#28298#0" />
-            <element signature="e#27606#27650#1" />
-            <element signature="e#28004#28068#0" />
-            <element signature="e#28319#28355#0" />
-            <element signature="e#28363#28436#0" />
-            <element signature="e#29076#29945#0" />
-            <element signature="e#29410#29848#0" />
-            <element signature="e#29951#30239#0" />
-            <element signature="e#30049#30212#1" />
-            <element signature="e#30157#30202#1" />
-            <element signature="e#30245#30392#0" />
-            <element signature="e#30398#31165#0" />
-            <element signature="e#30501#31108#0" />
-            <element signature="e#31167#31182#0" />
-            <element signature="e#32298#32741#0" />
-            <element signature="e#32484#32735#1" />
-            <element signature="e#32527#32573#1" />
-            <element signature="e#32579#32725#1" />
-            <element signature="e#32748#33414#0" />
-            <element signature="e#32843#33377#0" />
-            <element signature="e#33035#33130#1" />
-            <element signature="e#33136#33229#1" />
-            <element signature="e#33567#33604#1" />
-            <element signature="e#34241#36143#0" />
-            <element signature="e#34327#36009#0" />
-            <element signature="e#35354#35757#1" />
-            <element signature="e#35436#35743#1" />
-            <element signature="e#36031#36137#0" />
-            <element signature="e#36928#37053#1" />
-            <element signature="e#37059#37155#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
+          <folding>
+            <element signature="e#344#735#0" />
+            <element signature="e#741#1186#0" />
           </folding>
         </state>
       </provider>

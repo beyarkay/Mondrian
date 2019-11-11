@@ -68,7 +68,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const boolean DEBUG = false;
+const boolean DEBUG = true;
 const char* ssid = "riversong";
 const char* password = "melodypond";
 int numStations = 0;
@@ -111,7 +111,7 @@ void handleLed() {
     digitalWrite(LED_BUILTIN, LOW);
   }
   server.send(200, "text/html", makeHtmlForm(state));
-}
+}\
 
 
 void setup() {

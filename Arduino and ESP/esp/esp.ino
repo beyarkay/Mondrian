@@ -81,7 +81,8 @@ boolean shouldPrint = true;
 ESP8266WebServer server(80);
 
 String makeHtmlForm(String state) {
-  String form = String("<form action='led'>") +
+  String form = String("<meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" />") +
+                "<form action='led'>" +
                 "<input type='radio' name='state' value='on' checked>Turn On" +
                 "<br /><br />" +
                 "<input type='radio' name='state' value='off'>Turn Off" +
@@ -110,7 +111,7 @@ void handleSerial() {
   char cmd = 'h';
   if (data.length() > 0)
     cmd = data.charAt(0);
-  
+
   if (cmd == 'l') {
     digitalWrite(0, LOW);
     digitalWrite(1, LOW);
@@ -187,9 +188,6 @@ void setup() {
   WiFi.softAP(ssid, password);             // Start the access point
   ArduinoOTA.begin();
 
-
-
-  
   // Setup the endpoints for the server:
   server.on("/", []() {
     server.send(200, "text/html", makeHtmlForm("unknown"));

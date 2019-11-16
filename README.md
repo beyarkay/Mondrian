@@ -4,6 +4,18 @@ Last Updated: 10 November 2019
 
 A robot to draw on a flat surface, with local positioning done through a moving phone camera
 
+# Next Steps
+
+* Add a movement system:
+	* 'Look at me' - the robot turns on its axis to face the camera
+	* 'Follow me' - the robot continuously moves towards the camera
+	* 'Trace a shape' - Find a way to upload a vector line file which the robot is able to follow and trace out
+* Add a second view to the app, which shows the world from a top-down perspective. This makes it easier to draw, with your finger, the path you want the robot to take. Maybe the original 'camera' view is shown as a little floating window in the corner, like google maps?
+* Add a sleep timer, that will HALT the robot after a certain amount of inactivity
+* Add instructions for how to connect to the robot
+* Add in a dedicated isolation switch that will disconnect the EN1 and EN2 pins on the H-bridge when the ESP is starting up. (Right now this is just done via a wire that is manually moved)
+
+
 # Components
 
 ## 1. The Robot

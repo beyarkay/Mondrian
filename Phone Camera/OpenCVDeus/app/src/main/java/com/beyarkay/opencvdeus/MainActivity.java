@@ -53,7 +53,6 @@ import org.opencv.calib3d.Calib3d;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.PrintWriter;
@@ -75,31 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private static final String CMD_BACKWARDS = "b";
     private static final String CMD_HALT = "h";
 
-    private final Scalar[] COLOURS = new Scalar[]{
-            new Scalar(83, 200, 172),
-            new Scalar(170, 214, 132),
-            new Scalar(251, 248, 125),
-            new Scalar(252, 198, 110),
-            new Scalar(242, 152, 177),
-            new Scalar(152, 118, 177),
-            new Scalar(188, 135, 30),
-            new Scalar(236, 168, 40),
-            new Scalar(254, 252, 212),
-            new Scalar(166, 219, 205),
-            new Scalar(102, 184, 176),
-            new Scalar(124, 194, 246),
-            new Scalar(175, 129, 228),
-            new Scalar(231, 132, 186),
-            new Scalar(249, 193, 160),
-            new Scalar(183, 246, 175)
-    };
-
     private int REQUEST_CODE_PERMISSIONS = 101;
     private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
     TextureView textureView;
     ImageView ivBitmap;
-
-    int currentImageType = Imgproc.COLOR_RGB2GRAY;
 
     ImageAnalysis imageAnalysis;
     Preview preview;
@@ -209,6 +187,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         Mat screenMatrix = new Mat();
                         // Convert the bitmap to a matrix
                         Utils.bitmapToMat(bitmap, screenMatrix);
+
+                        Log.d(TAG, "width: " + screenMatrix.width());
+                        Log.d(TAG, "height: " + screenMatrix.height());
+
                         // Remove the alpha channel
                         Imgproc.cvtColor(screenMatrix, screenMatrix, Imgproc.COLOR_RGBA2RGB);
                         // Define a 'dictionary' of Aruco markers to use
@@ -235,10 +217,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                                 rvec,
                                 tvec
                         );
-
+                        List<Mat> rotationMatrices = new ArrayList<>();
 
                         // X:red, Y:green, Z:blue.
                         for (int i = 0; i < rvec.height(); i++) {
+
                             Calib3d.drawFrameAxes(
                                     screenMatrix,
                                     cameraMatrix,
@@ -247,10 +230,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                                     tvec.row(i),
                                     length
                             );
+                            if (rotationMatrices.size() > 0) {
+                                Calib3d.Rodrigues(rvec.row(i), rotationMatrices.get(i));
+                                Log.d(TAG, String.valueOf(rotationMatrices.get(i).total()));
+                            }
                         }
-                        Log.d(TAG, "rvec: " + rvec.dump());
-                        Log.d(TAG, "tvec: " + tvec.dump());
-                        Log.d(TAG, " . ");
+
 
                         final Bitmap output = Bitmap.createBitmap(screenMatrix.width(), screenMatrix.height(), Bitmap.Config.ARGB_8888);
                         Utils.matToBitmap(screenMatrix, output);
@@ -265,6 +250,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 });
         return imageAnalysis;
     }
+
+    private void getRelativeRVecAndTVec(Mat rvec0, Mat tvec0, Mat rvec1, Mat tvec1) {
+    }
+
 
     private Mat getCameraMatrix() {
         float f_x = 521.45f;

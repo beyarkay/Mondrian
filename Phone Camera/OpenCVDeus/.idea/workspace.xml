@@ -71,26 +71,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa4d554a-6b04-4e97-adae-749457673106" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Arduino and ESP/esp/esp.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../../Arduino and ESP/esp/esp.ino" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileContent/fileContent.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/classAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/javaCompile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6-rc-1/javaCompile/taskHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,36 +105,33 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="252" column="39" selection-start-line="252" selection-start-column="39" selection-end-line="252" selection-end-column="39" />
+            <state relative-caret-position="682">
+              <caret line="253" column="85" selection-start-line="253" selection-start-column="85" selection-end-line="253" selection-end-column="85" />
               <folding>
-                <element signature="e#14360#16919#0" expanded="true" />
-                <element signature="e#16653#16876#0" expanded="true" />
-                <element signature="e#16875#16876#0" expanded="true" />
-                <element signature="e#16918#16919#0" expanded="true" />
-                <element signature="e#10547#11199#0" />
+                <element signature="initializer##0;class#MainActivity#0" />
+                <element signature="e#4720#9117#0" />
+                <element signature="e#10216#10505#0" />
+                <element signature="e#10511#11635#0" />
+                <element signature="e#5012#5519#0" expanded="true" />
+                <element signature="e#5518#5519#0" expanded="true" />
+                <element signature="e#6088#9382#0" expanded="true" />
+                <element signature="e#9381#9382#0" expanded="true" />
                 <element signature="e#23144#24013#0" />
                 <element signature="e#29898#30336#0" />
                 <element signature="e#24019#24307#0" />
                 <element signature="e#26366#26809#0" />
                 <element signature="e#26816#27476#0" />
-                <element signature="e#33569#33598#0" expanded="true" />
+                <element signature="e#12073#12102#0" expanded="true" />
                 <element signature="e#27483#28610#0" />
                 <element signature="e#28617#30519#0" />
                 <element signature="e#30525#32493#0" />
+                <element signature="e#15878#16603#0" expanded="true" />
+                <element signature="e#16602#16603#0" expanded="true" />
+                <element signature="e#16605#17078#0" expanded="true" />
+                <element signature="e#17077#17078#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/old_activity_main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="112" column="24" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -451,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567721098956</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Cleaned up Android app">
+      <created>1574087386053</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1574087386053</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -465,10 +451,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.5008" side_tool="true" weight="0.1881259" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49690402" visible="true" weight="0.15522175" />
-      <window_info id="Structure" order="2" sideWeight="0.503096" side_tool="true" visible="true" weight="0.15522175" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49608356" visible="true" weight="0.12088698" />
+      <window_info id="Structure" order="2" sideWeight="0.50391644" side_tool="true" visible="true" weight="0.12088698" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
@@ -476,11 +463,11 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.72746783" weight="0.34578314" />
-      <window_info active="true" anchor="bottom" x="0" y="22" width="1440" height="878" id="Logcat" maximized="true" order="1" sideWeight="0.8082976" visible="true" weight="0.22168675" />
+      <window_info anchor="bottom" x="0" y="22" width="1440" height="878" id="Logcat" maximized="true" order="1" sideWeight="0.8082976" visible="true" weight="0.077108435" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.7253219" weight="0.32891566" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.16144578" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.78683835" weight="0.3421687" />
       <window_info anchor="bottom" id="Terminal" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.19170243" side_tool="true" visible="true" weight="0.22168675" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.21316166" side_tool="true" weight="0.5421687" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32866243" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.6258941" weight="0.32289156" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.5228916" />
@@ -490,7 +477,7 @@
       <window_info anchor="right" id="Gradle" order="2" sideWeight="0.5888" weight="0.3297568" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Preview" order="4" sideWeight="0.655496" weight="0.3297568" />
-      <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="5" sideWeight="0.4112" side_tool="true" visible="true" weight="0.26251787" />
+      <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="5" sideWeight="0.4112" side_tool="true" weight="0.21101573" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
     </layout>
     <layout-to-restore>
@@ -532,7 +519,8 @@
     <MESSAGE value="Improved debugging" />
     <MESSAGE value="Got Corner detection working, as well as other things" />
     <MESSAGE value="Moved everything into methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved everything into methods" />
+    <MESSAGE value="Cleaned up Android app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up Android app" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -560,12 +548,33 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
-        <watch expression="((Button) view).getText().toString()" language="JAVA" />
+        <watch expression="rotationMatrix.type()" language="JAVA" />
+        <watch expression="rvec.depth()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>rvec.depth()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>rotationMatrix.type()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>rotationMatrix.channels()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>rotationMatrix.depth()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>((Button) view).getText().toString()</expression-string>
         <language-id>JAVA</language-id>
@@ -594,27 +603,6 @@
       <expression>
         <expression-string>distCoeffs.type() == cameraMatrix.type()</expression-string>
         <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>distCoeffs.total()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>cameraMatrix.type() == 5 || cameraMatrix.type() == 6</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>cameraMatrix.type() == 5 || CameraX</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>cameraMatrix.size().equals(new Size(3, 3))</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>org.opencv.core.Size</custom-info>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
@@ -813,23 +801,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/beyarkay/opencvdeus/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="252" column="39" selection-start-line="252" selection-start-column="39" selection-end-line="252" selection-end-column="39" />
+        <state relative-caret-position="682">
+          <caret line="253" column="85" selection-start-line="253" selection-start-column="85" selection-end-line="253" selection-end-column="85" />
           <folding>
-            <element signature="e#14360#16919#0" expanded="true" />
-            <element signature="e#16653#16876#0" expanded="true" />
-            <element signature="e#16875#16876#0" expanded="true" />
-            <element signature="e#16918#16919#0" expanded="true" />
-            <element signature="e#10547#11199#0" />
+            <element signature="initializer##0;class#MainActivity#0" />
+            <element signature="e#4720#9117#0" />
+            <element signature="e#10216#10505#0" />
+            <element signature="e#10511#11635#0" />
+            <element signature="e#5012#5519#0" expanded="true" />
+            <element signature="e#5518#5519#0" expanded="true" />
+            <element signature="e#6088#9382#0" expanded="true" />
+            <element signature="e#9381#9382#0" expanded="true" />
             <element signature="e#23144#24013#0" />
             <element signature="e#29898#30336#0" />
             <element signature="e#24019#24307#0" />
             <element signature="e#26366#26809#0" />
             <element signature="e#26816#27476#0" />
-            <element signature="e#33569#33598#0" expanded="true" />
+            <element signature="e#12073#12102#0" expanded="true" />
             <element signature="e#27483#28610#0" />
             <element signature="e#28617#30519#0" />
             <element signature="e#30525#32493#0" />
+            <element signature="e#15878#16603#0" expanded="true" />
+            <element signature="e#16602#16603#0" expanded="true" />
+            <element signature="e#16605#17078#0" expanded="true" />
+            <element signature="e#17077#17078#0" expanded="true" />
           </folding>
         </state>
       </provider>

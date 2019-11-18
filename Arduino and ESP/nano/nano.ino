@@ -28,6 +28,7 @@ void loop() {
 
   // put your main code here, to run repeatedly:
   char command = readByte();
+  Serial.println(command);
   cmd_motors(command);
   if (command == '+') {
     digitalWrite(LED_BUILTIN, HIGH);

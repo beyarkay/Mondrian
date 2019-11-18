@@ -24,33 +24,33 @@ void setup() {
 
 void loop() {
 
-  //  char motor = readByte();
-  //  char dir = readByte();
-  //  motorControl(motor, dir);
+    char motor = readByte();
+    char dir = readByte();
+    motorControl(motor, dir);
 
-  motorControl('l', '+');
-  motorControl('r', '+');
-  delay(1000);
-
-
-  motorControl('l', '+');
-  motorControl('r', '-');
-  delay(1000);
-
-
-  motorControl('l', '-');
-  motorControl('r', '-');
-  delay(1000);  
-  
-  motorControl('l', '-');
-  motorControl('r', '+');
-  delay(1000);
+//  motorControl('l', '+');
+//  motorControl('r', '+');
+//  delay(1000);
+//
+//
+//  motorControl('l', '+');
+//  motorControl('r', '-');
+//  delay(1000);
+//
+//
+//  motorControl('l', '-');
+//  motorControl('r', '-');
+//  delay(1000);  
+//  
+//  motorControl('l', '-');
+//  motorControl('r', '+');
+//  delay(1000);
 
 }
 
 
 void motorControl(char motor, char dir) {
-  if (dir == '+') {
+  if (dir == 'f') {
     if (motor == 'l') {
       Serial.println("Left Forwards");
       digitalWrite(leftIn1, HIGH);
@@ -61,7 +61,7 @@ void motorControl(char motor, char dir) {
       digitalWrite(rghtIn1, HIGH);
       digitalWrite(rghtIn2, LOW);
     }
-  } else if (dir == '-') {
+  } else if (dir == 'b') {
     if (motor == 'l') {
       Serial.println("Left Backwards");
       digitalWrite(leftIn1, LOW);

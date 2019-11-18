@@ -49,7 +49,6 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.aruco.Aruco;
 import org.opencv.aruco.Dictionary;
-import org.opencv.calib3d.Calib3d;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
@@ -181,9 +180,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         final Bitmap bitmap = textureView.getBitmap();
                         float length = 39.0f;   // aruco square side length (mm)
 
-                        if (bitmap == null)
+                        if (bitmap == null) {
                             return;
-
+                        }
                         Mat screenMatrix = new Mat();
                         // Convert the bitmap to a matrix
                         Utils.bitmapToMat(bitmap, screenMatrix);
@@ -203,39 +202,65 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         // Find all the markers on the screen
                         Aruco.detectMarkers(screenMatrix, dictionary, corners, ids);
 
-                        Mat cameraMatrix = getCameraMatrix();
-                        MatOfDouble distCoeffs = new MatOfDouble(0, 0, 0, 0);
-                        Mat rvec = new Mat(1, 3, CvType.CV_64F);
-                        Mat tvec = new Mat(1, 3, CvType.CV_64F);
+                        if (ids.total() > 0) {
+                            Aruco.drawDetectedMarkers(screenMatrix, corners, ids);
 
-                        // Estimate the pose
-                        Aruco.estimatePoseSingleMarkers(
-                                corners,
-                                length,
-                                cameraMatrix,
-                                distCoeffs,
-                                rvec,
-                                tvec
-                        );
-                        List<Mat> rotationMatrices = new ArrayList<>();
 
-                        // X:red, Y:green, Z:blue.
-                        for (int i = 0; i < rvec.height(); i++) {
+                            Mat cameraMatrix = getCameraMatrix();
+                            MatOfDouble distCoeffs = new MatOfDouble(0, 0, 0, 0);
+                            Mat rvec = new Mat(1, 3, CvType.CV_64F);
+                            Mat tvec = new Mat(1, 3, CvType.CV_64F);
 
-                            Calib3d.drawFrameAxes(
-                                    screenMatrix,
+                            // Estimate the pose
+                        /*
+                        The camera pose respect to a marker is the 3d transformation
+                        from the marker coordinate system to the camera coordinate system.
+
+                        It is specified by a rotation and a translation vector (see solvePnP()
+                        function for more information).
+                         */
+
+
+                            Aruco.estimatePoseSingleMarkers(
+                                    corners,
+                                    length,
                                     cameraMatrix,
                                     distCoeffs,
-                                    rvec.row(i),
-                                    tvec.row(i),
-                                    length
+                                    rvec,
+                                    tvec
                             );
-                            if (rotationMatrices.size() > 0) {
-                                Calib3d.Rodrigues(rvec.row(i), rotationMatrices.get(i));
-                                Log.d(TAG, String.valueOf(rotationMatrices.get(i).total()));
-                            }
-                        }
 
+
+                            for (int i = 0; i < ids.total(); i++) {
+                                Aruco.drawAxis(
+                                        screenMatrix,
+                                        cameraMatrix,
+                                        distCoeffs,
+                                        rvec.row(i),
+                                        tvec.row(i),
+                                        length/2.0f
+                                );
+                            }
+
+//                            List<Mat> rotationMatrices = new ArrayList<>();
+
+//                            // X:red, Y:green, Z:blue.
+//                            for (int i = 0; i < rvec.height(); i++) {
+//
+//                                Calib3d.drawFrameAxes(
+//                                        screenMatrix,
+//                                        cameraMatrix,
+//                                        distCoeffs,
+//                                        rvec.row(i),
+//                                        tvec.row(i),
+//                                        length
+//                                );
+//                                if (rotationMatrices.size() > 0) {
+//                                    Calib3d.Rodrigues(rvec.row(i), rotationMatrices.get(i));
+//                                    Log.d(TAG, String.valueOf(rotationMatrices.get(i).total()));
+//                                }
+//                            }
+                        }
 
                         final Bitmap output = Bitmap.createBitmap(screenMatrix.width(), screenMatrix.height(), Bitmap.Config.ARGB_8888);
                         Utils.matToBitmap(screenMatrix, output);

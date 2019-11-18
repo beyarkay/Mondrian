@@ -72,7 +72,6 @@
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 
-const boolean DEBUG = true;
 const char* ssid = "riversong";
 const char* password = "melodypond";
 int numStations = 0;
@@ -82,7 +81,8 @@ boolean shouldPrint = true;
 ESP8266WebServer server(80);
 
 String makeHtmlForm(String state) {
-  String form = String("<form action='led'>") +
+  String form = String("<meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" />") +
+                "<form action='led'>" +
                 "<input type='radio' name='state' value='on' checked>Turn On" +
                 "<br /><br />" +
                 "<input type='radio' name='state' value='off'>Turn Off" +
@@ -93,23 +93,71 @@ String makeHtmlForm(String state) {
                 state +
                 "</p>" +
                 "<br />" +
-                "<a href='/serial?data=somedata'>Send '/serial?data=f'</a>" +
+                "<a href='/serial?data=f'>Send '/serial?data=f'</a>" +
                 "<br />" +
-                "<a href='/serial?data=somedata'>Send '/serial?data=b'</a>" +
+                "<a href='/serial?data=b'>Send '/serial?data=b'</a>" +
                 "<br />" +
-                "<a href='/serial?data=somedata'>Send '/serial?data=r'</a>" +
+                "<a href='/serial?data=r'>Send '/serial?data=r'</a>" +
                 "<br />" +
-                "<a href='/serial?data=somedata'>Send '/serial?data=l'</a>" +
+                "<a href='/serial?data=l'>Send '/serial?data=l'</a>" +
                 "<br />" +
-                "<a href='/serial?data=somedata'>Send '/serial?data=h'</a>";
+                "<a href='/serial?data=h'>Send '/serial?data=h'</a>";
   return form;
 }
 
 void handleSerial() {
   // Get the input from the client
   String data = server.arg("data"); //http ://<ip address>/serial?data=thisissomedata
-  // Send that data off to the nano, over the Serial
-  Serial.println(data);
+  char cmd = 'h';
+  if (data.length() > 0)
+    cmd = data.charAt(0);
+
+  if (cmd == 'l') {
+    digitalWrite(0, LOW);
+    digitalWrite(1, LOW);
+    digitalWrite(2, LOW);
+    digitalWrite(3, HIGH);
+  } else if (cmd == 'r') {
+    digitalWrite(0, HIGH);
+    digitalWrite(1, LOW);
+    digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+  } else if (cmd == 'f') {
+    digitalWrite(0, HIGH);
+    digitalWrite(1, LOW);
+    digitalWrite(2, LOW);
+    digitalWrite(3, HIGH);
+  } else if (cmd == 'b') {
+    digitalWrite(0, LOW);
+    digitalWrite(1, HIGH);
+    digitalWrite(2, HIGH);
+    digitalWrite(3, LOW);
+  } else if (cmd == 'h') {
+    digitalWrite(0, LOW);
+    digitalWrite(1, LOW);
+    digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+  } else if (cmd == '0') {
+    digitalWrite(0, HIGH);
+    digitalWrite(1, LOW);
+    digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+  } else if (cmd == '1') {
+    digitalWrite(0, LOW);
+    digitalWrite(1, HIGH);
+    digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+  } else if (cmd == '2') {
+    digitalWrite(0, LOW);
+    digitalWrite(1, LOW);
+    digitalWrite(2, HIGH);
+    digitalWrite(3, LOW);
+  } else if (cmd == '3') {
+    digitalWrite(0, LOW);
+    digitalWrite(1, LOW);
+    digitalWrite(2, LOW);
+    digitalWrite(3, HIGH);
+  }
   // Send a confirmation response to the client
   server.send(200, "text/html", makeHtmlForm(data));
 }
@@ -127,55 +175,19 @@ void handleLed() {
 
 
 void setup() {
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(0, OUTPUT);
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
 
-  Serial.begin(115200);
-  delay(10);
+  digitalWrite(0, LOW);
+  digitalWrite(1, LOW);
+  digitalWrite(2, LOW);
+  digitalWrite(3, LOW);
+
   WiFi.softAP(ssid, password);             // Start the access point
-
-  if (DEBUG) {
-    Serial.println('\n');
-    Serial.print("Access Point '");
-    Serial.print(ssid);
-    Serial.println("' started");
-  }
-
-  ArduinoOTA.onStart([]() {
-    String type;
-    if (ArduinoOTA.getCommand() == U_FLASH) {
-      type = "sketch";
-    } else { // U_FS
-      type = "filesystem";
-    }
-
-    // NOTE: if updating FS this would be the place to unmount FS using FS.end()
-    Serial.println("Start updating " + type);
-  });
-  ArduinoOTA.onEnd([]() {
-    Serial.println("\nEnd");
-  });
-  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
-    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
-  });
-  ArduinoOTA.onError([](ota_error_t error) {
-    Serial.printf("Error[%u]: ", error);
-    if (error == OTA_AUTH_ERROR) {
-      Serial.println("Auth Failed");
-    } else if (error == OTA_BEGIN_ERROR) {
-      Serial.println("Begin Failed");
-    } else if (error == OTA_CONNECT_ERROR) {
-      Serial.println("Connect Failed");
-    } else if (error == OTA_RECEIVE_ERROR) {
-      Serial.println("Receive Failed");
-    } else if (error == OTA_END_ERROR) {
-      Serial.println("End Failed");
-    }
-  });
   ArduinoOTA.begin();
 
-
-
-  
   // Setup the endpoints for the server:
   server.on("/", []() {
     server.send(200, "text/html", makeHtmlForm("unknown"));
@@ -184,28 +196,9 @@ void setup() {
   server.on("/serial", handleSerial);
 
   server.begin();
-
-  if (DEBUG) {
-    Serial.print("HTTP server started at: http://");
-    Serial.println(WiFi.softAPIP());
-  }
 }
 
 void loop() {
   ArduinoOTA.handle();
   server.handleClient();
-
-  if (numStations != WiFi.softAPgetStationNum()) {
-    if (DEBUG) {
-      Serial.print("\nNumber of connected stations: ");
-      Serial.println(WiFi.softAPgetStationNum());
-    }
-    numStations = WiFi.softAPgetStationNum();
-  }
-  if (millis() % 2000 == 0 && shouldPrint && DEBUG) {
-    Serial.print(".");
-    shouldPrint = false;
-  } else if (millis() % 2000 > 0) {
-    shouldPrint = true;
-  }
 }

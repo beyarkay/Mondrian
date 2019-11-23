@@ -49,9 +49,12 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.aruco.Aruco;
 import org.opencv.aruco.Dictionary;
+import org.opencv.calib3d.Calib3d;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.MatOfPoint3f;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.PrintWriter;
@@ -220,7 +223,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         function for more information).
                          */
 
-
                             Aruco.estimatePoseSingleMarkers(
                                     corners,
                                     length,
@@ -230,16 +232,35 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                                     tvec
                             );
 
-
                             for (int i = 0; i < ids.total(); i++) {
+
+
+                                // distortion coefficients have to be MatOfDouble in this signature
+                                MatOfDouble dMat = new MatOfDouble(0, 0, 0, 0, 0);
+// this one works fine
+//                                Calib3d.projectPoints(objectPts3f, rVec, tVec, kMat, dMat, imagePts2f, new Mat(), 0);
+//
+                                MatOfPoint3f objectPoints = new MatOfPoint3f();
+                                MatOfPoint2f imagePoints = new MatOfPoint2f();
+                                Calib3d.projectPoints(
+                                        objectPoints,
+                                        rvec,
+                                        tvec,
+                                        cameraMatrix,
+                                        distCoeffs,
+                                        imagePoints
+                                );
+
                                 Aruco.drawAxis(
                                         screenMatrix,
                                         cameraMatrix,
                                         distCoeffs,
                                         rvec.row(i),
                                         tvec.row(i),
-                                        length/2.0f
+                                        length / 2.0f
                                 );
+
+
                             }
 
 //                            List<Mat> rotationMatrices = new ArrayList<>();

@@ -5,7 +5,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -37,22 +39,23 @@ import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.aruco.Aruco;
+import org.opencv.aruco.Board;
 import org.opencv.aruco.Dictionary;
-import org.opencv.calib3d.Calib3d;
+import org.opencv.aruco.GridBoard;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
-import org.opencv.core.MatOfPoint2f;
-import org.opencv.core.MatOfPoint3f;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.PrintWriter;
@@ -60,6 +63,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
 
@@ -86,6 +90,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     EditText etData;
     TextView tvHtml;
+
+    Dictionary dictionary;
+    Mat boardMat;
+    GridBoard arucoBoard;
+    Board aruCube;
+
 
     static {
         if (!OpenCVLoader.initDebug())
@@ -117,6 +127,38 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         etData = findViewById(R.id.etData);
         tvHtml = findViewById(R.id.tvHtml);
+
+        int markersX = 5;
+        int markersY = 5;
+        int boardMatLength = markersX * 100;
+        float markerSizeMeters = 0.0031f;
+        float markerSeparation = 0.0008f;
+        dictionary = Aruco.getPredefinedDictionary(Aruco.DICT_4X4_50);
+
+        boardMat = new Mat(boardMatLength, boardMatLength, CvType.CV_8UC3);
+
+        arucoBoard = GridBoard.create(markersX, markersY, markerSizeMeters, markerSeparation, dictionary);
+        arucoBoard.draw(new org.opencv.core.Size(boardMatLength, boardMatLength), boardMat, 10);
+
+//        List<Mat> objPoints = new ArrayList<>();
+//        // for each of the six sides of the cube
+//        for (int i = 0; i < 6; i++) {
+//            // add a new set of 4 coordinates for the corners of the face of the cube
+//            objPoints.add(new MatOfPoint3f(
+//                    // 4 points, one for each corner of the Aruco marker, c
+//                    new Point3(0, 0, 0),
+//                    new Point3(0, 0, 0),
+//                    new Point3(0, 0, 0),
+//                    new Point3(0, 0, 0)
+//            ));
+//        }
+
+
+//        Mat ids = new Mat();
+//        ids.put(0, 0, new int[]{0, 1, 2, 3, 4, 5, 6});
+
+//        aruCube = Board.create(objPoints, dictionary, ids);
+
 
         if (allPermissionsGranted()) {
             startCamera();
@@ -173,7 +215,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         imageAnalysis.setAnalyzer(
                 new ImageAnalysis.Analyzer() {
-
                     @SuppressLint("DefaultLocale")
                     @Override
                     public void analyze(ImageProxy image, int rotationDegrees) {
@@ -188,13 +229,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         // Convert the bitmap to a matrix
                         Utils.bitmapToMat(bitmap, screenMatrix);
 
-                        Log.d(TAG, "width: " + screenMatrix.width());
-                        Log.d(TAG, "height: " + screenMatrix.height());
-
                         // Remove the alpha channel
                         Imgproc.cvtColor(screenMatrix, screenMatrix, Imgproc.COLOR_RGBA2RGB);
-                        // Define a 'dictionary' of Aruco markers to use
-                        Dictionary dictionary = Aruco.getPredefinedDictionary(Aruco.DICT_4X4_50);
 
                         // Define output variables
                         List<Mat> corners = new ArrayList<>();
@@ -208,81 +244,92 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
 
                             Mat cameraMatrix = getCameraMatrix();
-                            MatOfDouble distCoeffs = new MatOfDouble(0, 0, 0, 0);
+//                            MatOfDouble distCoeffs = new MatOfDouble(0, 0, 0, 0);
+                            MatOfDouble distCoeffs = new MatOfDouble(
+                                    1.35662720e+00,
+                                    9.08181872e+01,
+                                    2.20891497e-03,
+                                    -1.22403374e-03,
+                                    3.28137049e+02,
+                                    1.07859235e+00,
+                                    8.98243136e+01,
+                                    3.22195142e+02
+                            );
+                            /*
+                            array([[ 1.35662720e+00],
+                                   [ 9.08181872e+01],
+                                   [ 2.20891497e-03],
+                                   [-1.22403374e-03],
+                                   [ 3.28137049e+02],
+                                   [ 1.07859235e+00],
+                                   [ 8.98243136e+01],
+                                   [ 3.22195142e+02],
+                                   [ 0.00000000e+00],
+                                   [ 0.00000000e+00],
+                                   [ 0.00000000e+00],
+                                   [ 0.00000000e+00],
+                                   [ 0.00000000e+00],
+                                   [ 0.00000000e+00]])
+                             */
                             Mat rvec = new Mat(1, 3, CvType.CV_64F);
                             Mat tvec = new Mat(1, 3, CvType.CV_64F);
 
-                            // Estimate the pose
-                        /*
-                        The camera pose respect to a marker is the 3d transformation
-                        from the marker coordinate system to the camera coordinate system.
-
-                        It is specified by a rotation and a translation vector (see solvePnP()
-                        function for more information).
-                         */
-
-                            Aruco.estimatePoseSingleMarkers(
-                                    corners,
-                                    length,
-                                    cameraMatrix,
-                                    distCoeffs,
-                                    rvec,
-                                    tvec
-                            );
-
-                            for (int i = 0; i < ids.total(); i++) {
-
-
-                                // distortion coefficients have to be MatOfDouble in this signature
-                                MatOfDouble dMat = new MatOfDouble(0, 0, 0, 0, 0);
-// this one works fine
-//                                Calib3d.projectPoints(objectPts3f, rVec, tVec, kMat, dMat, imagePts2f, new Mat(), 0);
-//
-                                MatOfPoint3f objectPoints = new MatOfPoint3f();
-                                MatOfPoint2f imagePoints = new MatOfPoint2f();
-                                Calib3d.projectPoints(
-                                        objectPoints,
-                                        rvec,
-                                        tvec,
-                                        cameraMatrix,
-                                        distCoeffs,
-                                        imagePoints
-                                );
-
+                            int valid = Aruco.estimatePoseBoard(corners, ids, arucoBoard, cameraMatrix, distCoeffs, rvec, tvec);
+                            if (valid > 0) {
                                 Aruco.drawAxis(
                                         screenMatrix,
                                         cameraMatrix,
                                         distCoeffs,
-                                        rvec.row(i),
-                                        tvec.row(i),
-                                        length / 2.0f
+                                        rvec,
+                                        tvec,
+                                        0.005f
+
                                 );
-
-
                             }
+//                            Aruco.estimatePoseSingleMarkers(
+//                                    corners,
+//                                    length,
+//                                    cameraMatrix,
+//                                    distCoeffs,
+//                                    rvec,
+//                                    tvec
+//                            );
 
-//                            List<Mat> rotationMatrices = new ArrayList<>();
-
-//                            // X:red, Y:green, Z:blue.
-//                            for (int i = 0; i < rvec.height(); i++) {
+//                            for (int i = 0; i < ids.total(); i++) {
 //
-//                                Calib3d.drawFrameAxes(
+//                                MatOfPoint3f objectPoints = new MatOfPoint3f();
+//                                MatOfPoint2f imagePoints = new MatOfPoint2f();
+//                                Calib3d.projectPoints(
+//                                        objectPoints,
+//                                        rvec,
+//                                        tvec,
+//                                        cameraMatrix,
+//                                        distCoeffs,
+//                                        imagePoints
+//                                );
+//
+//                                Aruco.drawAxis(
 //                                        screenMatrix,
 //                                        cameraMatrix,
 //                                        distCoeffs,
 //                                        rvec.row(i),
 //                                        tvec.row(i),
-//                                        length
+//                                        length / 2.0f
 //                                );
-//                                if (rotationMatrices.size() > 0) {
-//                                    Calib3d.Rodrigues(rvec.row(i), rotationMatrices.get(i));
-//                                    Log.d(TAG, String.valueOf(rotationMatrices.get(i).total()));
-//                                }
 //                            }
                         }
 
-                        final Bitmap output = Bitmap.createBitmap(screenMatrix.width(), screenMatrix.height(), Bitmap.Config.ARGB_8888);
-                        Utils.matToBitmap(screenMatrix, output);
+
+//                            Imgproc.cvtColor(boardMat, boardMat, Imgproc.COLOR_GRAY2RGB);
+
+//                        Log.d(TAG, "boardMat.type(): " + boardMat.type());
+//                        Log.d(TAG, "screenMatrix.type(): " + screenMatrix.type());
+//                        boardMat.copyTo(screenMatrix.submat(new Rect(0, 0, boardMat.cols(), boardMat.rows())));
+
+
+                        final Bitmap output = addBitmaps(boardMat, screenMatrix);
+//                        final Bitmap output = Bitmap.createBitmap(screenMatrix.width(), screenMatrix.height(), Bitmap.Config.ARGB_8888);
+//                        Utils.matToBitmap(screenMatrix, output);
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -300,16 +347,21 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
 
     private Mat getCameraMatrix() {
-        float f_x = 521.45f;
-        float f_y = 520.38f;
-        float c_x = 320.80f;
-        float c_y = 238.60f;
+        /*
+        array([[760.02078232,   0.        , 462.51719693],
+               [  0.        , 760.02078232, 233.01656859],
+               [  0.        ,   0.        ,   1.        ]])
+         */
+        float f_x = 760.02078232f;
+        float f_y = 760.02078232f;
+        float c_x = 462.51719693f;
+        float c_y = 233.01656859f;
 
         // make and populate a camera matrix with f_x, f_y, c_x, and c_y
         float[][] arr = new float[][]{
-                new float[]{f_x, 0, c_x},
-                new float[]{0, f_y, c_y},
-                new float[]{0, 0, 1}
+                new float[]{f_x, 0f, c_x},
+                new float[]{0f, f_y, c_y},
+                new float[]{0f, 0f, 1f}
         };
         Mat cameraMatrix = new Mat(3, 3, CvType.CV_64F);
         for (int row = 0; row < 3; row++) {
@@ -318,6 +370,62 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
         return cameraMatrix;
     }
+
+
+    private Bitmap addBitmaps(Mat smallMat, Mat bigMat) {
+
+        Bitmap smallBitmap = Bitmap.createBitmap(smallMat.width(), smallMat.height(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(smallMat, smallBitmap);
+
+        Bitmap bigBitmap = Bitmap.createBitmap(bigMat.width(), bigMat.height(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(bigMat, bigBitmap);
+
+        Bitmap result = Bitmap.createBitmap(bigMat.width(), bigMat.height(), Bitmap.Config.ARGB_8888);
+        Canvas cv = new Canvas(result);
+
+        cv.drawBitmap(bigBitmap, 0, 0, null);
+        Paint alphaPaint = new Paint();
+        alphaPaint.setAlpha(50);
+        cv.drawBitmap(smallBitmap, 0, 0, alphaPaint);
+        cv.save();
+        cv.restore();
+
+        return result;
+    }
+
+//    private static Bitmap combineMatrixesToBitmap(Mat[] matrices) {
+//        Bitmap[] bitmaps = new Bitmap[4];
+//
+//        for (int i = 0; i < matrices.length; i++) {
+//            bitmaps[i] = Bitmap.createBitmap(matrices[i].width(), matrices[i].height(), Bitmap.Config.ARGB_8888);
+//            Utils.matToBitmap(matrices[i], bitmaps[i]);
+//        }
+//
+//        Bitmap result;
+//        try {
+//            if (bitmaps[0] == null) {
+//                return null;
+//            }
+//            int bgWidth = bitmaps[0].getWidth();
+//            int bgHeight = bitmaps[0].getHeight();
+//
+//            for (int i = 0; i < bitmaps.length; i++) {
+//
+//            }
+//
+//            result = Bitmap.createBitmap(bgWidth, bgHeight, Bitmap.Config.ARGB_8888);
+//            Canvas cv = new Canvas(result);
+//            cv.drawBitmap(bitmaps[0], 0, 0, null);
+////            cv.drawBitmap(bitmaps[1], (bgWidth) / 2, 0, null);
+////            cv.drawBitmap(bitmaps[2], 0, (bgHeight / 2), null);
+////            cv.drawBitmap(bitmaps[3], (bgWidth) / 2, (bgHeight / 2), null);
+//            cv.save();
+//            cv.restore();
+//            return result;
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 
     private void updateTransform() {
         Matrix matrix = new Matrix();

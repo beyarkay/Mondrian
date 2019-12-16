@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"></menu>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_calibrate"
+        android:icon="@drawable/ic_photo_camera_black_24dp"
+        android:orderInCategory="1"
+        android:title="@string/calibrate"
+        android:visible="true"
+        app:showAsAction="always" />
+
+
+</menu>

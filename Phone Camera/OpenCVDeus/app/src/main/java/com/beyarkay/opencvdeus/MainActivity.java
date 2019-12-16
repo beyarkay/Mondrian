@@ -3,6 +3,7 @@ package com.beyarkay.opencvdeus;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -18,6 +19,8 @@ import android.text.Html;
 import android.util.Log;
 import android.util.Rational;
 import android.util.Size;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.TextureView;
@@ -34,7 +37,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraX;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageAnalysisConfig;
-import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
 import androidx.core.app.ActivityCompat;
@@ -50,7 +52,6 @@ import com.android.volley.toolbox.Volley;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.aruco.Aruco;
-import org.opencv.aruco.Board;
 import org.opencv.aruco.Dictionary;
 import org.opencv.aruco.GridBoard;
 import org.opencv.core.CvType;
@@ -94,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     Dictionary dictionary;
     Mat boardMat;
     GridBoard arucoBoard;
-    Board aruCube;
 
 
     static {
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         int boardMatLength = markersX * 100;
         float markerSizeMeters = 0.0031f;
         float markerSeparation = 0.0008f;
-        dictionary = Aruco.getPredefinedDictionary(Aruco.DICT_4X4_50);
+        dictionary = Aruco.getPredefinedDictionary(Aruco.DICT_4X4_250);
 
         boardMat = new Mat(boardMatLength, boardMatLength, CvType.CV_8UC3);
 
@@ -166,6 +166,43 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
         }
     }
+
+    //# Variables
+    //nx = 2
+    //ny = 2
+    //num_gridboards = 4
+    //marker_size = 0.025 # 25mm
+    //between_markers = 0.005
+    //aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_250)
+    //save_dir = "generated/gridboards"
+//
+//    private GridBoard[] createGridboards(
+//            int nx, int ny, float marker_size,
+//            float between_markers, Dictionary aruco_dict,
+//            int num_gridboards){
+//
+//
+//
+//    }
+
+//    private void cheeky(rvec0, tvec0){
+//
+//        /*
+//        R, _ = cv2.Rodrigues(rvec0)
+//        M = np.linalg.inv(np.matmul(rotation_matrix, np.identioty(3));
+//
+//
+//        def convert_to_2d(point):
+//            return np.matmul(M, p - tvec0)
+//
+//        def convert_to_3d(point):
+//            rot_mat, _ = cv2.Rodrigues(rvec0)
+//            t = np.matmul(rot_mat, p)
+//            return t + tvec0
+//
+//         */
+//
+//    }
 
     private void startCamera() {
         CameraX.unbindAll();
@@ -214,78 +251,75 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         ImageAnalysis imageAnalysis = new ImageAnalysis(imageAnalysisConfig);
 
         imageAnalysis.setAnalyzer(
-                new ImageAnalysis.Analyzer() {
-                    @SuppressLint("DefaultLocale")
-                    @Override
-                    public void analyze(ImageProxy image, int rotationDegrees) {
-                        //Analyzing live camera feed begins.
-                        final Bitmap bitmap = textureView.getBitmap();
-                        float length = 39.0f;   // aruco square side length (mm)
+                (image, rotationDegrees) -> {
+                    //Analyzing live camera feed begins.
+                    final Bitmap bitmap = textureView.getBitmap();
+                    float length = 39.0f;   // aruco square side length (mm)
 
-                        if (bitmap == null) {
-                            return;
-                        }
-                        Mat screenMatrix = new Mat();
-                        // Convert the bitmap to a matrix
-                        Utils.bitmapToMat(bitmap, screenMatrix);
+                    if (bitmap == null) {
+                        return;
+                    }
+                    Mat screenMatrix = new Mat();
+                    // Convert the bitmap to a matrix
+                    Utils.bitmapToMat(bitmap, screenMatrix);
 
-                        // Remove the alpha channel
-                        Imgproc.cvtColor(screenMatrix, screenMatrix, Imgproc.COLOR_RGBA2RGB);
+                    // Remove the alpha channel
+                    Imgproc.cvtColor(screenMatrix, screenMatrix, Imgproc.COLOR_RGBA2RGB);
 
-                        // Define output variables
-                        List<Mat> corners = new ArrayList<>();
-                        Mat ids = new Mat();
+                    // Define output variables
+                    List<Mat> corners = new ArrayList<>();
+                    Mat ids = new Mat();
 
-                        // Find all the markers on the screen
-                        Aruco.detectMarkers(screenMatrix, dictionary, corners, ids);
+                    // Find all the markers on the screen
+                    Aruco.detectMarkers(screenMatrix, dictionary, corners, ids);
 
-                        if (ids.total() > 0) {
-                            Aruco.drawDetectedMarkers(screenMatrix, corners, ids);
+                    if (ids.total() > 0) {
+                        Aruco.drawDetectedMarkers(screenMatrix, corners, ids);
 
 
-                            Mat cameraMatrix = getCameraMatrix();
+                        Mat cameraMatrix = getCameraMatrix();
 //                            MatOfDouble distCoeffs = new MatOfDouble(0, 0, 0, 0);
-                            MatOfDouble distCoeffs = new MatOfDouble(
-                                    1.35662720e+00,
-                                    9.08181872e+01,
-                                    2.20891497e-03,
-                                    -1.22403374e-03,
-                                    3.28137049e+02,
-                                    1.07859235e+00,
-                                    8.98243136e+01,
-                                    3.22195142e+02
+                        MatOfDouble distCoeffs = new MatOfDouble(
+                                1.35662720e+00,
+                                9.08181872e+01,
+                                2.20891497e-03,
+                                -1.22403374e-03,
+                                3.28137049e+02,
+                                1.07859235e+00,
+                                8.98243136e+01,
+                                3.22195142e+02
+                        );
+                        /*
+                        array([[ 1.35662720e+00],
+                               [ 9.08181872e+01],
+                               [ 2.20891497e-03],
+                               [-1.22403374e-03],
+                               [ 3.28137049e+02],
+                               [ 1.07859235e+00],
+                               [ 8.98243136e+01],
+                               [ 3.22195142e+02],
+                               [ 0.00000000e+00],
+                               [ 0.00000000e+00],
+                               [ 0.00000000e+00],
+                               [ 0.00000000e+00],
+                               [ 0.00000000e+00],
+                               [ 0.00000000e+00]])
+                         */
+                        Mat rvec = new Mat(1, 3, CvType.CV_64F);
+                        Mat tvec = new Mat(1, 3, CvType.CV_64F);
+
+                        int valid = Aruco.estimatePoseBoard(corners, ids, arucoBoard, cameraMatrix, distCoeffs, rvec, tvec);
+                        if (valid > 0) {
+                            Aruco.drawAxis(
+                                    screenMatrix,
+                                    cameraMatrix,
+                                    distCoeffs,
+                                    rvec,
+                                    tvec,
+                                    0.005f
+
                             );
-                            /*
-                            array([[ 1.35662720e+00],
-                                   [ 9.08181872e+01],
-                                   [ 2.20891497e-03],
-                                   [-1.22403374e-03],
-                                   [ 3.28137049e+02],
-                                   [ 1.07859235e+00],
-                                   [ 8.98243136e+01],
-                                   [ 3.22195142e+02],
-                                   [ 0.00000000e+00],
-                                   [ 0.00000000e+00],
-                                   [ 0.00000000e+00],
-                                   [ 0.00000000e+00],
-                                   [ 0.00000000e+00],
-                                   [ 0.00000000e+00]])
-                             */
-                            Mat rvec = new Mat(1, 3, CvType.CV_64F);
-                            Mat tvec = new Mat(1, 3, CvType.CV_64F);
-
-                            int valid = Aruco.estimatePoseBoard(corners, ids, arucoBoard, cameraMatrix, distCoeffs, rvec, tvec);
-                            if (valid > 0) {
-                                Aruco.drawAxis(
-                                        screenMatrix,
-                                        cameraMatrix,
-                                        distCoeffs,
-                                        rvec,
-                                        tvec,
-                                        0.005f
-
-                                );
-                            }
+                        }
 //                            Aruco.estimatePoseSingleMarkers(
 //                                    corners,
 //                                    length,
@@ -317,7 +351,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 //                                        length / 2.0f
 //                                );
 //                            }
-                        }
+                    }
 
 
 //                            Imgproc.cvtColor(boardMat, boardMat, Imgproc.COLOR_GRAY2RGB);
@@ -327,17 +361,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 //                        boardMat.copyTo(screenMatrix.submat(new Rect(0, 0, boardMat.cols(), boardMat.rows())));
 
 
-                        final Bitmap output = addBitmaps(boardMat, screenMatrix);
+                    final Bitmap output = addBitmaps(boardMat, screenMatrix);
 //                        final Bitmap output = Bitmap.createBitmap(screenMatrix.width(), screenMatrix.height(), Bitmap.Config.ARGB_8888);
 //                        Utils.matToBitmap(screenMatrix, output);
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ivBitmap.setImageBitmap(output);
-                            }
-                        });
-                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ivBitmap.setImageBitmap(output);
+                        }
+                    });
                 });
         return imageAnalysis;
     }
@@ -352,6 +385,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                [  0.        , 760.02078232, 233.01656859],
                [  0.        ,   0.        ,   1.        ]])
          */
+
         float f_x = 760.02078232f;
         float f_y = 760.02078232f;
         float c_x = 462.51719693f;
@@ -497,6 +531,36 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         view.setEnabled(true);
     }
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_calibrate) {
+            Toast.makeText(MainActivity.this, "Starting Calibration", Toast.LENGTH_LONG).show();
+
+
+            Intent intent = new Intent(this, CalibrateCameraActivity.class);
+            startActivity(intent);
+
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public boolean onTouch(View view, MotionEvent event) {
         if (view.getId() == R.id.btnConnect || view.getId() == R.id.btnSend) {
@@ -520,10 +584,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                         sendHttp(ENDPOINT_SERIAL + CMD_RIGHT);
                         break;
                 }
+                view.performClick();
                 break;
             case MotionEvent.ACTION_UP:
                 sendHttp(ENDPOINT_SERIAL + CMD_HALT);
-
+                view.performClick();
                 break;
         }
         return true;

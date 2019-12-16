@@ -112,16 +112,17 @@ void handleSerial() {
   if (data.length() > 0)
     cmd = data.charAt(0);
 
-  if (cmd == 'l') {
+  if (cmd == 'r') {
     digitalWrite(0, LOW);
-    digitalWrite(1, LOW);
+    digitalWrite(1, HIGH);
     digitalWrite(2, LOW);
     digitalWrite(3, HIGH);
-  } else if (cmd == 'r') {
+  } else if (cmd == 'l') {
     digitalWrite(0, HIGH);
     digitalWrite(1, LOW);
-    digitalWrite(2, LOW);
+    digitalWrite(2, HIGH);
     digitalWrite(3, LOW);
+    
   } else if (cmd == 'f') {
     digitalWrite(0, HIGH);
     digitalWrite(1, LOW);
@@ -162,16 +163,16 @@ void handleSerial() {
   server.send(200, "text/html", makeHtmlForm(data));
 }
 
-void handleLed() {
-  String state = server.arg("state");
-  if (state == "on") {  //http ://<ip address>/led?state=on
-    digitalWrite(LED_BUILTIN, HIGH);
-  }
-  else if (state == "off") {  // http ://<ip address>/led?state=off
-    digitalWrite(LED_BUILTIN, LOW);
-  }
-  server.send(200, "text/html", makeHtmlForm(state));
-}\
+//void handleLed() {
+//  String state = server.arg("state");
+//  if (state == "on") {  //http ://<ip address>/led?state=on
+//    digitalWrite(LED_BUILTIN, HIGH);
+//  }
+//  else if (state == "off") {  // http ://<ip address>/led?state=off
+//    digitalWrite(LED_BUILTIN, LOW);
+//  }
+//  server.send(200, "text/html", makeHtmlForm(state));
+//}\
 
 
 void setup() {
@@ -192,7 +193,7 @@ void setup() {
   server.on("/", []() {
     server.send(200, "text/html", makeHtmlForm("unknown"));
   });
-  server.on("/led", handleLed);
+//  server.on("/led", handleLed);
   server.on("/serial", handleSerial);
 
   server.begin();

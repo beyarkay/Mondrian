@@ -1,0 +1,28 @@
+max 127 markers (due to marker count being sent as signed byte)
+
+-----------------------PAYLOAD STRUCTURE----------------------
+
+4 bytes - time
+1 byte - number of markers in this message
+
+for each marker:
+	1 byte - marker ID
+	8 bytes - x
+	8 bytes - y
+	8 bytes - rotation
+
+--------------------------------------------------------------
+
+Notes for the future:
+
+Stu's ESP8266 was using little-endian ordering (running Arduino core)
+
+UDP_TX_PACKET_MAX_SIZE was 8192 on Stu's ESP8266
+UPD packet header is 8 bytes
+This leaves us with 8187 usable bytes
+We are using 25 bytes per marker + 5 bytes for time + nMarkers
+Therefore we could in theory do (8192-5)/25 = 327 markers
+
+Practically we could do 256 markers by using an unsigned int for nMarkers
+Currently not doing this because Java doesn't have nice support for unsigned ints - ugly conversion code needed
+Remember to change the marker array size on the ESP if we do

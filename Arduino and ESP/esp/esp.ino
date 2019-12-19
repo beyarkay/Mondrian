@@ -63,6 +63,14 @@
           https://arduino-esp8266.readthedocs.io/en/latest/exception_causes.html
       The tool EspExceptionDecoder (https://github.com/me-no-dev/EspExceptionDecoder) works to
           decode the ESP8266 Stack dump into readable error messages
+
+   HOW TO ACCESS DEBUG LOG
+   
+   run the following command:
+   nc 192.168.4.1 90
+
+   you should see a friendly greeting from James
+   note that for some reason it sometimes takes a while to connect
 */
 
 #include <ESP8266WiFi.h>
@@ -74,11 +82,38 @@
 
 const char* ssid = "riversong";
 const char* password = "melodypond";
-int numStations = 0;
-boolean shouldPrint = true;
 
+const unsigned int map_updates_port = 8888;             //port to listen for UDP map updates on
+const unsigned int log_server_port = 90;                //port to listen for TCP debug connections on
+const unsigned int remote_control_web_server_port = 80; //web server port for remote control commands
+const unsigned int OTA_updates_port = 8266;             //port for OTA updates server
 
-ESP8266WebServer server(80);
+const int MAX_MARKERS = 127;
+const int LOG_BUFFER_SIZE = 500;
+
+struct marker {
+  double x, y, rotation;
+};
+
+char log_buffer[LOG_BUFFER_SIZE];
+int log_buffer_start = 0;
+int log_buffer_end = 0;
+
+//Note "markers" and "marker_seen" are indexed by marker ID, but "incoming_markers" and "incoming_marker_ids" are not
+byte incoming_markers_size = 0; //Number of markers received in the last packet (currently in the incoming_markers and incoming_marker_ids arrays)
+byte incoming_marker_ids[MAX_MARKERS]; //ID of each incoming marker
+marker incoming_markers[MAX_MARKERS]; //Parallel array to incoming_marker_ids
+
+//Below are 2 arrays that aren't currently used anywhere in the code
+boolean marker_seen[MAX_MARKERS]; //for future use - indexed by ID
+marker markers[MAX_MARKERS];  //for future use - indexed by ID
+
+byte packetBuffer[UDP_TX_PACKET_MAX_SIZE + 1]; //buffer to hold incoming packet for map updates
+
+WiFiUDP Udp;
+WiFiServer log_server(log_server_port);
+WiFiClient log_client; // currently connected logging client
+ESP8266WebServer server(remote_control_web_server_port);
 
 String makeHtmlForm(String state) {
   String form = String("<meta name=\"viewport\" content=\"initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" />") +
@@ -187,7 +222,11 @@ void setup() {
   digitalWrite(3, LOW);
 
   WiFi.softAP(ssid, password);             // Start the access point
+  ArduinoOTA.setPort(OTA_updates_port);
   ArduinoOTA.begin();
+
+  Udp.begin(map_updates_port);
+  log_server.begin();
 
   // Setup the endpoints for the server:
   server.on("/", []() {
@@ -202,4 +241,92 @@ void setup() {
 void loop() {
   ArduinoOTA.handle();
   server.handleClient();
+  handleLogServer();
+  handleMapUpdates();
+}
+
+void handleMapUpdates() {
+  // if there's data available, read a packet
+  int packetSize = Udp.parsePacket();
+  if (packetSize) {
+    // read the packet into packetBufffer
+    int n = Udp.read(packetBuffer, UDP_TX_PACKET_MAX_SIZE);
+    packetBuffer[n] = 0;
+
+    byte* pointer = packetBuffer;
+
+    int time;
+    memcpy(&time, pointer, 4);                  pointer += 4;
+    memcpy(&incoming_markers_size, pointer, 1); pointer += 1;
+
+    logf("Received packet time: %d, markers: %d\n", time,  incoming_markers_size);
+
+    for (byte i = 0; i < incoming_markers_size; i++) {
+      memcpy(&incoming_marker_ids[i], pointer, 1);       pointer += 1;
+      memcpy(&incoming_markers[i].x, pointer, 8);        pointer += 8;
+      memcpy(&incoming_markers[i].y, pointer, 8);        pointer += 8;
+      memcpy(&incoming_markers[i].rotation, pointer, 8); pointer += 8;
+      
+      logf("Marker id: %d, x: %f, y: %f, rotation: %f\n", incoming_marker_ids[i], incoming_markers[i].x, incoming_markers[i].y, incoming_markers[i].rotation);
+    }
+  }
+}
+
+void handleLogServer() {
+  WiFiClient new_client = log_server.available();
+  if (new_client) {
+    if (log_client.connected()) {
+      new_client.println("hi, you've reached James.\nSorry I can't take this connection right now, someone else is still using the debug connection.");
+      new_client.stop();
+    } else {
+      log_client = new_client;
+      log_client.println("hi, this is James.");
+    }
+  }
+
+  //Send everything currently in the log buffer
+  if (log_client.connected()) {
+    while (log_buffer_start != log_buffer_end) {
+      log_client.print(log_buffer[log_buffer_start]);
+      log_buffer_start = (log_buffer_start + 1) % LOG_BUFFER_SIZE;
+    }
+    log_client.flush();
+  }
+}
+
+/**
+   Copied from the printf function at: https://github.com/esp8266/Arduino/blob/master/cores/esp8266/Print.cpp
+*/
+void logf(const char *format, ...) {
+  va_list arg;
+  va_start(arg, format);
+  char temp[64];
+  char* buffer = temp;
+  size_t len = vsnprintf(temp, sizeof(temp), format, arg);
+  va_end(arg);
+  if (len > sizeof(temp) - 1) {
+    buffer = new char[len + 1];
+    if (!buffer) {
+      return;
+    }
+    va_start(arg, format);
+    len = vsnprintf(buffer, len + 1, format, arg);
+    va_end(arg);
+  }
+  log(buffer);
+  if (buffer != temp) {
+    delete[] buffer;
+  }
+}
+
+void log(char s[]) {
+  for (int i = 0; s[i] != 0; i++) {
+    log_buffer[log_buffer_end] = s[i];
+    log_buffer_end = (log_buffer_end + 1) % LOG_BUFFER_SIZE;
+
+    //If the buffer is full, we're going to overwrite the oldest element next
+    if (log_buffer_start == log_buffer_end) {
+      log_buffer_start = (log_buffer_start + 1) % LOG_BUFFER_SIZE;
+    }
+  }
 }

@@ -80,6 +80,10 @@
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 
+static_assert (sizeof(byte) == 1, "byte size is incompatible with map update protocol");
+static_assert (sizeof(int) == 4, "int size is incompatible with map update protocol");
+static_assert (sizeof(double) == 8, "double size is incompatible with map update protocol");
+
 const char* ssid = "riversong";
 const char* password = "melodypond";
 

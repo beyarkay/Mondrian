@@ -55,7 +55,7 @@ A robot to draw on a flat surface, with local positioning done through a moving 
 	* trace a consistent square on the ground while the camera viewpoint changes
 	* if multiple phones were used, the robot could expand its area of reliable movement to beyond that of just one camera's viewpoint by selecting the closest or most accurate viewpoint
 
-### Images
+### Prototype App Screenshots
 
 ![ss_1_aruco.jpg](readme_resources/ss_1_aruco.jpg) ![ss_2_aruco.jpg](readme_resources/ss_2_aruco.jpg)
 

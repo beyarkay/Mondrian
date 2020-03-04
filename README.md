@@ -59,6 +59,21 @@ A robot to draw on a flat surface, with local positioning done through a moving 
 
 ![ss_1_aruco.jpg](readme_resources/ss_1_aruco.jpg) ![ss_2_aruco.jpg](readme_resources/ss_2_aruco.jpg)
 
+# Current progress
+
+### Marker pose estimation and surface projection
+
+A prototype of the marker detection, pose estimation and projection onto a 2D plane has been developed.
+The picture below show an image taken with a phone camera where the aruco markers have been detected. The second picture shows a projection of the marker positions and a "normal" for each marker (point showing the orientation of the marker).
+
+![Screenshot 2020-03-04 at 18 30 46](https://user-images.githubusercontent.com/28049022/75901096-b247e800-5e46-11ea-8592-c5eac7f75097.png)
+
+![Screenshot 2020-03-04 at 18 30 51](https://user-images.githubusercontent.com/28049022/75901105-b6740580-5e46-11ea-9078-5966424eb665.png)
+
+### Network protocols
+
+Prototype protocols and implementations for wireless remote debugging and receiving location updates on the ESP have been developed.
+
 # File Structure
 ```
 Mondrian  
